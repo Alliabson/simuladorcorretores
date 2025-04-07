@@ -750,7 +750,7 @@ def main():
         with col_b1:
             submitted = st.form_submit_button("Calcular")
         with col_b2:
-            reset = st.form_submit_button("Resetar", on_click=reset_form)
+            reset = st.form_submit_button("Reiniciar", on_click=reset_form)
     
     if submitted:
         try:
