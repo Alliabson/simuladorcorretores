@@ -1,0 +1,5 @@
+- Simulador sem o cálculo de comissão.
+- Faz cálculos utilizando a modalidade de juros price
+- Planos de negociações: Mensal; Mensal + Balão (anual ou semestral), Só Balão Anual; Só Balão Semestral
+- Exporta planilha para PDF e EXCEL
+- Possui botão de cálcular e resetar cálculo
