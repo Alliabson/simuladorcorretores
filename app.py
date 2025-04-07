@@ -610,7 +610,7 @@ def main():
         with col1:
             st.image(logo, width=150, use_container_width=False)
         with col2:
-            st.title("**Seja bem vindo, ao Simulador da JMD URBANISMO**")
+            st.title("**Seja bem vindo ao Simulador da JMD URBANISMO**")
     else:
         st.title("Simulador Imobiliária Celeste")   
    
