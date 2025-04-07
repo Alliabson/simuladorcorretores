@@ -49,7 +49,7 @@ npf = install_and_import('numpy-financial', 'numpy_financial')
 def load_logo():
     try:
         # Tenta carregar a imagem localmente
-        logo = Image.open("Celeste_Logo_Nova_2.png")
+        logo = Image.open("JMD HAMOA HORIZONTAL - BRANCO.png")
         return logo
     except Exception as e:
         st.warning(f"Não foi possível carregar a logo: {str(e)}")
