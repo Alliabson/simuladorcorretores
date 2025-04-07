@@ -623,7 +623,7 @@ def main():
                 st.write(f"Quantidade de Balões: {qtd_baloes}")
             
             valor_parcela = st.number_input(
-                "Valor da Parcela (R$ - deixe 0 para cálculo automático)", 
+                "Valor da Parcela (R$ - **No plano mensal, só balão anual e só balão semestral deixe 0, No plano mensal+balão digite o valor**)", 
                 min_value=0.0, 
                 value=st.session_state.valor_parcela, 
                 step=100.0,
