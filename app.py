@@ -45,11 +45,12 @@ np = install_and_import('numpy')
 FPDF = install_and_import('fpdf2', 'fpdf').FPDF
 npf = install_and_import('numpy-financial', 'numpy_financial')
 
-@st.cache_data
+@st.cache_data(ttl=86400)  # Cache por 24 horas
 def load_logo():
     try:
-        # Tenta carregar a imagem localmente
+        # Reduzindo o tamanho da imagem antes de carregar
         logo = Image.open("JMD HAMOA HORIZONTAL - BRANCO.png")
+        logo.thumbnail((300, 300))  # Redimensiona mantendo aspect ratio
         return logo
     except Exception as e:
         st.warning(f"Não foi possível carregar a logo: {str(e)}")
@@ -111,6 +112,16 @@ def set_theme():
             background-color: #0052B4;
             transform: translateY(-1px);
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Botão de reset - estilo diferente */
+        .reset-button button {
+            background-color: #FF4B4B !important;
+            color: white !important;
+        }
+        
+        .reset-button button:hover {
+            background-color: #CC0000 !important;
         }
         
         /* Cards/metricas - fundo escuro com borda colorida */
@@ -189,6 +200,41 @@ def set_theme():
             font-size: 1.5rem !important;
             border-bottom: 2px solid #0068E6;
             padding-bottom: 0.5rem;
+        }
+        /* ESTILOS PARA ALINHAMENTO DOS BOTÕES */
+        div[data-testid="column"] {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        
+        /* Espaçamento entre os botões */
+        .stButton:first-of-type {
+            margin-right: 8cm;  /* Distância de 8cm entre os botões */
+        }
+        
+        /* Garante que os botões tenham a mesma altura */
+        .stButton > button {
+            height: 38px;
+            padding: 0 20px;
+            margin: 0;
+        }
+        
+        /* Estilo específico para o botão de reset */
+        .reset-button {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Remove espaçamento extra das colunas */
+        [data-testid="column"] {
+            padding: 0 !important;
+        }
+        
+        /* Garante que o container dos botões não quebre */
+        .stForm {
+            overflow: visible;
         }
     </style>
     """, unsafe_allow_html=True)
@@ -520,7 +566,6 @@ def gerar_cronograma(valor_financiado, valor_parcela, valor_balao,
         }]
     
     return cronograma
-
 def gerar_pdf(cronograma, dados):
     try:
         pdf = FPDF()
@@ -599,6 +644,12 @@ def gerar_excel(cronograma):
     except Exception as e:
         st.error(f"Erro ao gerar Excel: {str(e)}")
         return BytesIO()
+
+def reset_form():
+    st.session_state.valor_total = 500000.0
+    st.session_state.entrada = 50000.0
+    st.session_state.valor_parcela = 0.0
+    st.session_state.valor_balao = 0.0
 
 def main():
     set_theme()
@@ -694,8 +745,12 @@ def main():
                     format="%.2f"
                 )
         
-        # Botão de submit dentro do form
-        submitted = st.form_submit_button("Calcular")
+        # Botões de submit e reset dentro do form
+        col_b1, col_b2, _ = st.columns([1, 1, 4])
+        with col_b1:
+            submitted = st.form_submit_button("Calcular")
+        with col_b2:
+            reset = st.form_submit_button("Resetar", on_click=reset_form)
     
     if submitted:
         try:
