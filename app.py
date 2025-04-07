@@ -7,7 +7,7 @@ from io import BytesIO
 import os
 import subprocess
 import sys
-import re  # Adicionando a importação faltante
+import re
 
 # Configuração robusta do locale
 def configure_locale():
@@ -55,7 +55,7 @@ def load_logo():
         st.warning(f"Não foi possível carregar a logo: {str(e)}")
         return None
 
-#Executar em wide
+# Executar em wide
 st.set_page_config(layout="wide")
 
 # Configuração do tema Streamlit
@@ -242,22 +242,6 @@ def parse_date(date_str):
         return datetime.strptime(date_str, '%d/%m/%Y')
     except ValueError:
         return datetime.now()
-
-def calcular_comissoes(valor_total, comissao_coordenacao, comissao_imobiliaria):
-    try:
-        coord = (float(comissao_coordenacao) / 100) * float(valor_total)
-        imob = (float(comissao_imobiliaria) / 100) * float(valor_total)
-        return {
-            'coord': coord,
-            'imob': imob,
-            'total': coord + imob
-        }
-    except:
-        return {
-            'coord': 0,
-            'imob': 0,
-            'total': 0
-        }
 
 def determinar_modo_calculo(modalidade):
     if modalidade == "mensal":
@@ -498,11 +482,6 @@ def gerar_pdf(cronograma, dados):
         pdf.cell(200, 10, txt=f"Taxa Mensal: {dados['taxa_mensal']}%", ln=1)
         pdf.ln(10)
         
-        pdf.cell(200, 10, txt=f"Comissão Coordenação: {formatar_moeda(dados['comissoes']['coord'])}", ln=1)
-        pdf.cell(200, 10, txt=f"Comissão Imobiliária: {formatar_moeda(dados['comissoes']['imob'])}", ln=1)
-        pdf.cell(200, 10, txt=f"Total Comissões: {formatar_moeda(dados['comissoes']['total'])}", ln=1)
-        pdf.ln(10)
-        
         colunas = ["Item", "Tipo", "Data Venc.", "Valor", "Valor Presente"]
         larguras = [30, 30, 40, 40, 40]
         
@@ -660,9 +639,6 @@ def main():
                     step=1000.0,
                     format="%.2f"
                 )
-            
-            comissao_coordenacao = st.number_input("Comissão de Coordenação (%)", min_value=0.0, value=0.5, step=0.1)
-            comissao_imobiliaria = st.number_input("Comissão Imobiliária (%)", min_value=0.0, value=5.0, step=0.1)
         
         # Botão de submit dentro do form
         submitted = st.form_submit_button("Calcular")
@@ -686,7 +662,6 @@ def main():
                 return
             
             taxas = calcular_taxas(taxa_mensal)
-            comissoes = calcular_comissoes(valor_total, comissao_coordenacao, comissao_imobiliaria)
             
             modo = determinar_modo_calculo(modalidade)
             
@@ -727,7 +702,7 @@ def main():
             # Mostrar resultados
             st.subheader("Resultados da Simulação")
             
-            col_res1, col_res2, col_res3 = st.columns(3)
+            col_res1, col_res2 = st.columns(2)
             
             with col_res1:
                 st.metric("Valor Total", formatar_moeda(valor_total))
@@ -736,11 +711,6 @@ def main():
             
             with col_res2:
                 st.metric("Taxa Mensal", f"{taxa_mensal}%")
-                st.metric("Comissão Coordenação", formatar_moeda(comissoes['coord']))
-                st.metric("Comissão Imobiliária", formatar_moeda(comissoes['imob']))
-            
-            with col_res3:
-                st.metric("Total Comissões", formatar_moeda(comissoes['total']))
                 st.metric("Valor da Parcela", formatar_moeda(valor_parcela))
                 if modalidade != "mensal":
                     st.metric("Valor do Balão", formatar_moeda(valor_balao))
@@ -771,7 +741,6 @@ def main():
                     'valor_total': valor_total,
                     'entrada': entrada,
                     'taxa_mensal': taxa_mensal,
-                    'comissoes': comissoes,
                     'valor_financiado': valor_financiado
                 })
                 st.download_button(
