@@ -58,83 +58,116 @@ def load_logo():
 # Executar em wide
 st.set_page_config(layout="wide")
 
-# Configuração do tema Streamlit
 def set_theme():
     st.markdown("""
     <style>
-        /* Fundo principal */
+        /* Fundo principal - tom mais escuro para contrastar com #C0BFBD */
         .stApp {
-            background-color: #1E1E1E;
+            background-color: #2A2B2E;
         }
         
-        /* Sidebar */
+        /* Sidebar - tom mais escuro que o fundo principal */
         [data-testid="stSidebar"] {
-            background-color: #252526;
+            background-color: #1E1F22;
         }
         
-        /* Títulos */
+        /* Títulos - branco puro para máximo contraste */
         h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
             color: #FFFFFF;
+            font-weight: 600;
         }
         
-        /* Texto geral */
+        /* Texto geral - cinza claro para legibilidade */
         .stMarkdown p, .stMarkdown li, .stText, .stNumberInput label, .stSelectbox label {
-            color: #E0E0E0;
+            color: #E8E8E8;
         }
         
-        /* Inputs */
+        /* Inputs - fundo escuro com borda contrastante */
         .stTextInput input, .stNumberInput input, .stSelectbox select {
-            background-color: #333333;
-            color: #FFFFFF;
-            border-color: #555555;
+            background-color: #3A3B3F !important;
+            color: #FFFFFF !important;
+            border-color: #55575C !important;
+            border-width: 1px !important;
         }
         
-        /* Botões */
+        /* Botões - azul vibrante para contraste */
         .stButton button {
-            background-color: #0056b3;
+            background-color: #0068E6;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
         
         .stButton button:hover {
-            background-color: #003d82;
+            background-color: #0052B4;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         
-        /* Cards/metricas */
+        /* Cards/metricas - fundo escuro com borda colorida */
         .stMetric {
-            background-color: #252526;
-            border-radius: 8px;
+            background-color: #3A3B3F;
+            border-radius: 10px;
             padding: 15px;
-            border-left: 4px solid #0056b3;
+            border-left: 5px solid #0068E6;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
         .stMetric label {
-            color: #A0A0A0 !important;
+            color: #B0B0B0 !important;
+            font-size: 14px !important;
         }
         
         .stMetric div {
             color: #FFFFFF !important;
             font-size: 24px !important;
+            font-weight: 600;
         }
         
-        /* Dataframe */
+        /* Dataframe - estilização moderna */
         .dataframe {
-            background-color: #252526 !important;
-            color: #E0E0E0 !important;
+            background-color: #3A3B3F !important;
+            color: #E8E8E8 !important;
+            border-radius: 8px;
+            overflow: hidden;
         }
         
         .dataframe th {
-            background-color: #0056b3 !important;
+            background-color: #0068E6 !important;
             color: white !important;
+            font-weight: 600;
+            padding: 12px !important;
+        }
+        
+        .dataframe td {
+            padding: 10px !important;
         }
         
         .dataframe tr:nth-child(even) {
-            background-color: #333333 !important;
+            background-color: #2E2F33 !important;
         }
         
         .dataframe tr:hover {
-            background-color: #444444 !important;
+            background-color: #45464A !important;
+        }
+        
+        /* Barra de seleção - estilo moderno */
+        .st-bd {
+            border-radius: 6px !important;
+        }
+        
+        /* Efeito de hover em cards */
+        .element-container:hover {
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+        
+        /* Ajuste de espaçamento geral */
+        .block-container {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
         }
     </style>
     """, unsafe_allow_html=True)
@@ -556,7 +589,7 @@ def main():
         with col1:
             st.image(logo, width=150, use_container_width=False)
         with col2:
-            st.title("Simulador Imobiliária Celeste")
+            st.title("**Sem bem vindo, ao Simulador da Imobiliária Celeste**")
     else:
         st.title("Simulador Imobiliária Celeste")   
    
