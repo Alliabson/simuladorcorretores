@@ -73,13 +73,20 @@ def set_theme():
         
         /* Títulos - branco puro para máximo contraste */
         h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
-            color: #FFFFFF;
+            color: #FFFFFF !important;
             font-weight: 600;
         }
         
-        /* Texto geral - cinza claro para legibilidade */
-        .stMarkdown p, .stMarkdown li, .stText, .stNumberInput label, .stSelectbox label {
-            color: #E8E8E8;
+        /* Texto geral - branco puro */
+        .stMarkdown p, .stMarkdown li, .stText, .stNumberInput label, 
+        .stSelectbox label, .stDataFrame label, .stButton label,
+        .stDownloadButton label, .stSubheader, .stMetricLabel {
+            color: #FFFFFF !important;
+        }
+        
+        /* Texto em tabelas */
+        .dataframe th, .dataframe td {
+            color: #FFFFFF !important;
         }
         
         /* Inputs - fundo escuro com borda contrastante */
@@ -91,16 +98,16 @@ def set_theme():
         }
         
         /* Botões - azul vibrante para contraste */
-        .stButton button {
+        .stButton button, .stDownloadButton button {
             background-color: #0068E6;
-            color: white;
+            color: white !important;
             border: none;
             border-radius: 6px;
             font-weight: 500;
             transition: all 0.3s ease;
         }
         
-        .stButton button:hover {
+        .stButton button:hover, .stDownloadButton button:hover {
             background-color: #0052B4;
             transform: translateY(-1px);
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
@@ -116,7 +123,7 @@ def set_theme():
         }
         
         .stMetric label {
-            color: #B0B0B0 !important;
+            color: #FFFFFF !important;
             font-size: 14px !important;
         }
         
@@ -129,7 +136,7 @@ def set_theme():
         /* Dataframe - estilização moderna */
         .dataframe {
             background-color: #3A3B3F !important;
-            color: #E8E8E8 !important;
+            color: #FFFFFF !important;
             border-radius: 8px;
             overflow: hidden;
         }
@@ -143,6 +150,7 @@ def set_theme():
         
         .dataframe td {
             padding: 10px !important;
+            color: #FFFFFF !important;
         }
         
         .dataframe tr:nth-child(even) {
@@ -168,6 +176,19 @@ def set_theme():
         .block-container {
             padding-top: 2rem;
             padding-bottom: 2rem;
+        }
+        
+        /* Texto dos botões de exportação */
+        .stDownloadButton button p {
+            color: #FFFFFF !important;
+        }
+        
+        /* Títulos das seções */
+        .stSubheader {
+            color: #FFFFFF !important;
+            font-size: 1.5rem !important;
+            border-bottom: 2px solid #0068E6;
+            padding-bottom: 0.5rem;
         }
     </style>
     """, unsafe_allow_html=True)
