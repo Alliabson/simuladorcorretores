@@ -682,13 +682,13 @@ def main():
     if logo:
         col1, col2 = st.columns([1, 4])
         with col1:
-            st.image(logo, width=200, use_container_width=False)  # Parâmetro atualizado
+            st.image(logo, width=200, use_container_width=False)
         with col2:
             st.title("**Seja bem vindo ao Simulador da JMD URBANISMO**")
     else:
         st.title("Simulador Imobiliária Celeste")
    
-    # Inicialização das variáveis de sessão - TODAS ZERADAS/VAZIAS
+    # Inicialização das variáveis de sessão - TODAS ZERADAS/VAZIAS, exceto taxa_mensal
     if 'valor_total' not in st.session_state:
         st.session_state.valor_total = 0.0
     if 'entrada' not in st.session_state:
@@ -708,10 +708,14 @@ def main():
     if 'qtd_baloes' not in st.session_state:
         st.session_state.qtd_baloes = 0
     if 'taxa_mensal' not in st.session_state:
-        st.session_state.taxa_mensal = 0.79
+        st.session_state.taxa_mensal = 0.79  # Valor padrão
     
     def reset_form():
-        """Função de reset que zera TODOS os campos"""
+        """Função de reset que mantém a taxa de juros e limpa os outros campos"""
+        # Salva o valor atual da taxa antes de limpar
+        taxa_atual = st.session_state.taxa_mensal
+        
+        # Limpa todos os campos
         st.session_state.valor_total = 0.0
         st.session_state.entrada = 0.0
         st.session_state.valor_parcela = 0.0
@@ -721,7 +725,9 @@ def main():
         st.session_state.metragem = ""
         st.session_state.qtd_parcelas = 0
         st.session_state.qtd_baloes = 0
-
+        
+        # Restaura o valor da taxa
+        st.session_state.taxa_mensal = taxa_atual
     
     # Container para os campos pequenos (Quadra, Lote, Metragem)
     with st.container():
@@ -817,10 +823,6 @@ def main():
         with col_b2:
             reset = st.form_submit_button("Reiniciar", on_click=reset_form)
     
-    # [Código anterior permanece exatamente igual até a linha 823]
-
-# [Todo o código anterior permanece igual até a linha 823]
-
     if submitted:
         try:
             # Atualiza todos os valores na sessão
