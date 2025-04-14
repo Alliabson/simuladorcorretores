@@ -12,7 +12,6 @@ import re
 # Configuração robusta do locale
 def configure_locale():
     try:
-        # Tenta configurar o locale específico do Brasil
         locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
     except locale.Error:
         try:
@@ -24,11 +23,9 @@ def configure_locale():
                 try:
                     locale.setlocale(locale.LC_ALL, '')
                 except locale.Error:
-                    # Fallback para locale neutro
                     locale.setlocale(locale.LC_ALL, 'C.UTF-8')
                     st.warning("Configuração de locale específica não disponível. Usando padrão internacional.")
 
-# Configura o locale no início da execução
 configure_locale()
 
 # Instalação garantida de dependências
@@ -45,86 +42,27 @@ np = install_and_import('numpy')
 FPDF = install_and_import('fpdf2', 'fpdf').FPDF
 npf = install_and_import('numpy-financial', 'numpy_financial')
 
-@st.cache_data(ttl=86400)  # Cache por 24 horas
+@st.cache_data(ttl=86400)
 def load_logo():
     try:
-        # Reduzindo o tamanho da imagem antes de carregar
         logo = Image.open("JMD HAMOA HORIZONTAL - BRANCO.png")
-        logo.thumbnail((300, 300))  # Redimensiona mantendo aspect ratio
+        logo.thumbnail((300, 300))
         return logo
     except Exception as e:
         st.warning(f"Não foi possível carregar a logo: {str(e)}")
         return None
 
-# Executar em wide
 st.set_page_config(layout="wide")
 
 def set_theme():
     st.markdown("""
     <style>
-        /* Fundo principal - tom mais escuro para contrastar com #C0BFBD */
+        /* FUNDO PRINCIPAL */
         .stApp {
             background-color: #2A2B2E;
         }
         
-        /* Sidebar - tom mais escuro que o fundo principal */
-        [data-testid="stSidebar"] {
-            background-color: #1E1F22;
-        }
-        
-        /* Títulos - branco puro para máximo contraste */
-        h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
-            color: #FFFFFF !important;
-            font-weight: 600;
-        }
-        
-        /* Texto geral - branco puro */
-        .stMarkdown p, .stMarkdown li, .stText, .stNumberInput label, 
-        .stSelectbox label, .stDataFrame label, .stButton label,
-        .stDownloadButton label, .stSubheader, .stMetricLabel {
-            color: #FFFFFF !important;
-        }
-        
-        /* Texto em tabelas */
-        .dataframe th, .dataframe td {
-            color: #FFFFFF !important;
-        }
-        
-        /* Inputs - fundo escuro com borda contrastante */
-        .stTextInput input, .stNumberInput input, .stSelectbox select {
-            background-color: #3A3B3F !important;
-            color: #FFFFFF !important;
-            border-color: #55575C !important;
-            border-width: 1px !important;
-        }
-        
-        /* Botões - azul vibrante para contraste */
-        .stButton button, .stDownloadButton button {
-            background-color: #0068E6;
-            color: white !important;
-            border: none;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .stButton button:hover, .stDownloadButton button:hover {
-            background-color: #0052B4;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-        
-        /* Botão de reset - estilo diferente */
-        .reset-button button {
-            background-color: #FF4B4B !important;
-            color: white !important;
-        }
-        
-        .reset-button button:hover {
-            background-color: #CC0000 !important;
-        }
-        
-        /* Cards/metricas - fundo escuro com borda colorida */
+        /* CARDS DE RESULTADO (MÉTRICAS) - AZUL VIBRANTE */
         .stMetric {
             background-color: #3A3B3F;
             border-radius: 10px;
@@ -144,12 +82,57 @@ def set_theme():
             font-weight: 600;
         }
         
-        /* Dataframe - estilização moderna */
+        /* BOTÃO CALCULAR - AZUL VIBRANTE */
+        div.stButton > button:first-child {
+            background-color: #0068E6 !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        
+        div.stButton > button:first-child:hover {
+            background-color: #0052B4 !important;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* BOTÃO REINICIAR (VERMELHO) */
+        .reset-button button {
+            background-color: #FF4B4B !important;
+            color: white !important;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        
+        .reset-button button:hover {
+            background-color: #CC0000 !important;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* BOTÕES DE EXPORTAÇÃO (AZUL VIBRANTE) */
+        .stDownloadButton button {
+            background-color: #0068E6 !important;
+            color: white !important;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .stDownloadButton button:hover {
+            background-color: #0052B4 !important;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* TABELA - ESTILO ORIGINAL */
         .dataframe {
             background-color: #3A3B3F !important;
             color: #FFFFFF !important;
             border-radius: 8px;
-            overflow: hidden;
         }
         
         .dataframe th {
@@ -172,35 +155,28 @@ def set_theme():
             background-color: #45464A !important;
         }
         
-        /* Barra de seleção - estilo moderno */
-        .st-bd {
-            border-radius: 6px !important;
+        /* SOLUÇÃO PARA FLICKERING */
+        [data-testid="stDataFrame-container"] {
+            will-change: transform;
+            contain: strict;
+            min-height: 400px;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
         }
         
-        /* Efeito de hover em cards */
-        .element-container:hover {
-            transform: translateY(-2px);
-            transition: all 0.3s ease;
+        .stDataFrame-fullscreen {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            z-index: 9999 !important;
+            background-color: #2A2B2E !important;
+            padding: 2rem !important;
+            overflow: auto !important;
         }
         
-        /* Ajuste de espaçamento geral */
-        .block-container {
-            padding-top: 2rem;
-            padding-bottom: 2rem;
-        }
-        
-        /* Texto dos botões de exportação */
-        .stDownloadButton button p {
-            color: #FFFFFF !important;
-        }
-        
-        /* Títulos das seções */
-        .stSubheader {
-            color: #FFFFFF !important;
-            font-size: 1.5rem !important;
-            border-bottom: 2px solid #0068E6;
-            padding-bottom: 0.5rem;
-        }
         /* ESTILOS PARA ALINHAMENTO DOS BOTÕES */
         div[data-testid="column"] {
             display: flex;
@@ -210,7 +186,7 @@ def set_theme():
         
         /* Espaçamento entre os botões */
         .stButton:first-of-type {
-            margin-right: 8cm;  /* Distância de 8cm entre os botões */
+            margin-right: 8cm;
         }
         
         /* Garante que os botões tenham a mesma altura */
@@ -231,55 +207,45 @@ def set_theme():
         [data-testid="column"] {
             padding: 0 !important;
         }
-               /* Novos estilos para os campos pequenos */
-        .small-input .stTextInput input {
-            width: 100px !important;
-            display: inline-block !important;
-            margin-right: 10px !important;
-        }
-        .inline-container {
-            display: flex;
-            flex-direction: row;
-            gap: 15px;
-        }
-        
-        /* Garante que o container dos botões não quebre */
-        .stForm {
-            overflow: visible;
-        }
-        
-        /* Espaçamento personalizado para a logo */
-        div[data-testid="stImage"] {
-            margin-top: 30px;
-            margin-bottom: 20px;
-        }       
     </style>
     """, unsafe_allow_html=True)
 
+
 # Função de formatação de moeda robusta
 def formatar_moeda(valor, simbolo=True):
-    """Formata valores monetários com precisão decimal corrigida"""
+    """Formata valores monetários com tratamento para valores já formatados"""
     try:
-        if valor is None:
+        # Se o valor já estiver formatado (contém R$), remove a formatação
+        if isinstance(valor, str) and 'R$' in valor:
+            valor = valor.replace('R$', '').strip()
+        
+        if valor is None or valor == '':
             return "R$ 0,00" if simbolo else "0,00"
         
+        # Converte para float se for string
         if isinstance(valor, str):
             valor = re.sub(r'[^\d,]', '', valor).replace(',', '.')
             valor = float(valor)
         
-        valor_arredondado = round(float(valor), 2)
-        valor_abs = abs(valor_arredondado)
+        # Formatação manual independente do locale
+        valor_abs = abs(valor)
         parte_inteira = int(valor_abs)
         parte_decimal = int(round((valor_abs - parte_inteira) * 100))
         
+        # Formata parte inteira com separadores de milhar
         parte_inteira_str = f"{parte_inteira:,}".replace(",", ".")
+        
+        # Monta o resultado
         valor_formatado = f"{parte_inteira_str},{parte_decimal:02d}"
         
-        if valor_arredondado < 0:
+        # Adiciona sinal negativo se necessário
+        if valor < 0:
             valor_formatado = f"-{valor_formatado}"
         
+        # Adiciona símbolo se solicitado
         return f"R$ {valor_formatado}" if simbolo else valor_formatado
-    except Exception:
+    except Exception as e:
+        print(f"Erro ao formatar moeda: {str(e)}")
         return "R$ 0,00" if simbolo else "0,00"
 
 def calcular_taxas(taxa_mensal):
@@ -402,7 +368,10 @@ def atualizar_baloes(modalidade, qtd_parcelas, tipo_balao=None):
         return 0
     except:
         return 0
-
+        
+@st.cache_data(ttl=3600)  # Cache por 1 hora
+@st.cache_data(ttl=3600)
+@st.cache_data(ttl=3600)
 def gerar_cronograma(valor_financiado, valor_parcela, valor_balao,
                     qtd_parcelas, qtd_baloes, modalidade, tipo_balao,
                     data_entrada, taxas):
@@ -418,6 +387,7 @@ def gerar_cronograma(valor_financiado, valor_parcela, valor_balao,
         parcelas = []
         baloes = []
         
+        # Primeiro passamos para calcular os valores sem ajuste
         if modalidade == "mensal":
             for i in range(1, qtd_parcelas + 1):
                 data_vencimento_parcela = ajustar_data_vencimento(data_entrada, "mensal", i, dia_vencimento)
@@ -533,16 +503,24 @@ def gerar_cronograma(valor_financiado, valor_parcela, valor_balao,
         
         cronograma = parcelas + baloes
         
-        # Ajuste para garantir que o valor presente total seja igual ao valor financiado
-        fator_ajuste = valor_financiado / total_valor_presente if total_valor_presente > 0 else 1
+        # Ajuste preciso para garantir que o valor presente total seja exatamente igual ao valor financiado
+        if cronograma:  # Se houver itens no cronograma
+            # Calcula a diferença e ajusta no último item
+            soma_valor_presente = sum(item['Valor_Presente'] for item in cronograma)
+            diferenca = valor_financiado - soma_valor_presente
+            
+            if abs(diferenca) > 0:
+                # Ajusta o último item para compensar a diferença
+                ultimo_item = cronograma[-1]
+                ultimo_item['Valor_Presente'] = round(ultimo_item['Valor_Presente'] + diferenca, 2)
+                ultimo_item['Desconto_Aplicado'] = round(ultimo_item['Valor'] - ultimo_item['Valor_Presente'], 2)
         
-        for item in cronograma:
-            item['Valor_Presente'] *= fator_ajuste
-            item['Desconto_Aplicado'] = item['Valor'] - item['Valor_Presente']
+        total_valor = round(sum(p['Valor'] for p in cronograma), 2)
+        total_valor_presente = round(sum(p['Valor_Presente'] for p in cronograma), 2)
+        total_desconto = round(sum(p['Desconto_Aplicado'] for p in cronograma), 2)
         
-        total_valor = sum(p['Valor'] for p in cronograma)
-        total_valor_presente = sum(p['Valor_Presente'] for p in cronograma)
-        total_desconto = sum(p['Desconto_Aplicado'] for p in cronograma)
+        # Garante que o valor presente total seja exatamente igual ao valor financiado
+        total_valor_presente = valor_financiado
         
         cronograma.append({
             "Item": "TOTAL",
@@ -672,8 +650,7 @@ def gerar_excel(cronograma, dados):
 def main():
     set_theme()
     
-    # Adicionando espaço antes da logo
-    st.write("\n")  # Segundo enter
+    st.write("\n")
     
     logo = load_logo()
     if logo:
@@ -715,6 +692,8 @@ def main():
         # Limpa todos os campos
         st.session_state.valor_total = 0.0
         st.session_state.entrada = 0.0
+        st.session_state.valor_parcela = 0.0  # Adicionado
+        st.session_state.valor_balao = 0.0    # Adicionado
         st.session_state.valor_parcela = 0.0
         st.session_state.valor_balao = 0.0
         st.session_state.quadra = ""
@@ -725,6 +704,7 @@ def main():
         
         # Restaura o valor da taxa
         st.session_state.taxa_mensal = taxa_atual
+
     
     # Container para os campos pequenos (Quadra, Lote, Metragem)
     with st.container():
@@ -903,14 +883,27 @@ def main():
             # Mostrar cronograma
             st.subheader("Cronograma de Pagamentos")
             
+            # Adicione esta função auxiliar ANTES da função main()
+            @st.cache_data
+            def formatar_dataframe(df):
+                df = df.copy()
+                for col in ['Valor', 'Valor_Presente', 'Desconto_Aplicado']:
+                    df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
+                    df[col] = df[col].apply(lambda x: formatar_moeda(x))
+                return df
+
+            # Modifique a exibição para:
             df_cronograma = pd.DataFrame([p for p in cronograma if p['Item'] != 'TOTAL'])
-            
-            df_cronograma['Valor'] = df_cronograma['Valor'].apply(lambda x: formatar_moeda(x))
-            df_cronograma['Valor_Presente'] = df_cronograma['Valor_Presente'].apply(lambda x: formatar_moeda(x))
-            df_cronograma['Desconto_Aplicado'] = df_cronograma['Desconto_Aplicado'].apply(lambda x: formatar_moeda(x))
-            
-            st.dataframe(df_cronograma)
-            
+            df_formatado = formatar_dataframe(df_cronograma)
+
+            with st.container():
+                st.dataframe(
+                    df_formatado,
+                    height=min(600, 35 * len(df_formatado) + 38),  # Altura dinâmica com mínimo de 600px
+                    use_container_width=True,
+                    hide_index=True
+                )
+                        
             total = next(p for p in cronograma if p['Item'] == 'TOTAL')
             st.metric("Valor Total a Pagar", formatar_moeda(total['Valor']))
             st.metric("Valor Presente Total", formatar_moeda(total['Valor_Presente']))
