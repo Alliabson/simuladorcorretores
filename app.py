@@ -72,12 +72,12 @@ def set_theme():
         }
         
         .stMetric label {
-            color: #FFFFFF !important;
+            color: #353535 !important;
             font-size: 14px !important;
         }
         
         .stMetric div {
-            color: #FFFFFF !important;
+            color: #353535 !important;
             font-size: 24px !important;
             font-weight: 600;
         }
@@ -144,7 +144,7 @@ def set_theme():
         
         .dataframe td {
             padding: 10px !important;
-            color: #FFFFFF !important;
+            color: #353535 !important;
         }
         
         .dataframe tr:nth-child(even) {
@@ -207,7 +207,11 @@ def set_theme():
         [data-testid="column"] {
             padding: 0 !important;
         }
-
+    /* ===== CORREÇÃO GLOBAL PARA TEXTOS ===== */
+    /* Todos os textos dentro do form */
+    div[data-testid="stForm"] * {
+        color: #FFFFFF !important;
+    }
     /* Títulos e textos gerais */
     h1, h2, h3, h4, h5, h6, p, div, span {
         color: #FFFFFF !important;
