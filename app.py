@@ -57,12 +57,42 @@ st.set_page_config(layout="wide")
 def set_theme():
     st.markdown("""
     <style>
-        /* FUNDO PRINCIPAL */
+        /* ===== FUNDO PRINCIPAL ===== */
         .stApp {
             background-color: #2A2B2E;
         }
-        
-        /* CARDS DE RESULTADO (MÉTRICAS) - AZUL VIBRANTE */
+
+        /* ===== COR DOS INPUTS E TEXTOS ===== */
+        /* Textos dentro dos inputs (formulários) */
+        .stTextInput input, 
+        .stNumberInput input,
+        .stSelectbox select,
+        .stTextArea textarea,
+        .stDateInput input,
+        .stTimeInput input,
+        .stSlider input {
+            color: #202124 !important;
+        }
+
+        /* Rótulos (labels) dos inputs */
+        .stTextInput label,
+        .stNumberInput label,
+        .stSelectbox label,
+        .stTextArea label,
+        .stDateInput label,
+        .stTimeInput label,
+        .stSlider label,
+        .stRadio label,
+        .stCheckbox label {
+            color: #FFFFFF !important;
+        }
+
+        /* Textos gerais (títulos, parágrafos, etc.) */
+        h1, h2, h3, h4, h5, h6, p, div, span {
+            color: #FFFFFF !important;
+        }
+
+        /* ===== CARDS DE RESULTADO (MÉTRICAS) ===== */
         .stMetric {
             background-color: #3A3B3F;
             border-radius: 10px;
@@ -70,92 +100,95 @@ def set_theme():
             border-left: 5px solid #0068E6;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-        
+
         .stMetric label {
-            color: #353535 !important;
+            color: #FFFFFF !important;
             font-size: 14px !important;
         }
-        
+
         .stMetric div {
-            color: #353535 !important;
+            color: #FFFFFF !important;
             font-size: 24px !important;
             font-weight: 600;
         }
-        
-        /* BOTÃO CALCULAR - AZUL VIBRANTE */
+
+        /* ===== BOTÕES ===== */
+        /* Botão Calcular - Azul Vibrante */
         div.stButton > button:first-child {
             background-color: #0068E6 !important;
             color: white !important;
             border: none !important;
             border-radius: 6px;
             font-weight: 500;
+            transition: all 0.3s ease;
         }
-        
+
         div.stButton > button:first-child:hover {
             background-color: #0052B4 !important;
             transform: translateY(-1px);
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
-        
-        /* BOTÃO REINICIAR (VERMELHO) */
+
+        /* Botão Reiniciar - Vermelho */
         .reset-button button {
             background-color: #FF4B4B !important;
             color: white !important;
-            border: none;
-            border-radius: 6px;
-            font-weight: 500;
+            border: none !important;
+            border-radius: 6px !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease !important;
         }
-        
+
         .reset-button button:hover {
             background-color: #CC0000 !important;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transform: translateY(-1px) !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
         }
-        
-        /* BOTÕES DE EXPORTAÇÃO (AZUL VIBRANTE) */
+
+        /* Botões de Exportação */
         .stDownloadButton button {
             background-color: #0068E6 !important;
             color: white !important;
-            border: none;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            border: none !important;
+            border-radius: 6px !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease !important;
         }
-        
+
         .stDownloadButton button:hover {
             background-color: #0052B4 !important;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transform: translateY(-1px) !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
         }
-        
-        /* TABELA - ESTILO ORIGINAL */
+
+        /* ===== TABELAS ===== */
         .dataframe {
             background-color: #3A3B3F !important;
             color: #FFFFFF !important;
-            border-radius: 8px;
+            border-radius: 8px !important;
         }
-        
+
         .dataframe th {
             background-color: #0068E6 !important;
             color: white !important;
-            font-weight: 600;
+            font-weight: 600 !important;
             padding: 12px !important;
         }
-        
+
         .dataframe td {
             padding: 10px !important;
-            color: #353535 !important;
+            color: #FFFFFF !important;
         }
-        
+
         .dataframe tr:nth-child(even) {
             background-color: #2E2F33 !important;
         }
-        
+
         .dataframe tr:hover {
             background-color: #45464A !important;
         }
-        
-        /* SOLUÇÃO PARA FLICKERING */
+
+        /* ===== SOLUÇÃO PARA FLICKERING ===== */
         [data-testid="stDataFrame-container"] {
             will-change: transform;
             contain: strict;
@@ -164,7 +197,7 @@ def set_theme():
             backface-visibility: hidden;
             perspective: 1000px;
         }
-        
+
         .stDataFrame-fullscreen {
             position: fixed !important;
             top: 0 !important;
@@ -176,75 +209,49 @@ def set_theme():
             padding: 2rem !important;
             overflow: auto !important;
         }
-        
-        /* ESTILOS PARA ALINHAMENTO DOS BOTÕES */
+
+        /* ===== LAYOUT E ALINHAMENTOS ===== */
+        /* Alinhamento dos botões */
         div[data-testid="column"] {
             display: flex;
             align-items: center;
             justify-content: flex-start;
         }
-        
+
         /* Espaçamento entre os botões */
         .stButton:first-of-type {
-            margin-right: 8cm;
+            margin-right: 8px;
         }
-        
-        /* Garante que os botões tenham a mesma altura */
+
+        /* Altura consistente para botões */
         .stButton > button {
             height: 38px;
             padding: 0 20px;
             margin: 0;
         }
-        
+
         /* Estilo específico para o botão de reset */
         .reset-button {
             display: flex;
             align-items: center;
             height: 100%;
         }
-        
+
         /* Remove espaçamento extra das colunas */
         [data-testid="column"] {
             padding: 0 !important;
         }
-    /* ===== CORREÇÃO GLOBAL PARA TEXTOS ===== */
-    /* Todos os textos dentro do form */
-    div[data-testid="stForm"] * {
-        color: #FFFFFF !important;
-    }
-    /* Títulos e textos gerais */
-    h1, h2, h3, h4, h5, h6, p, div, span {
-        color: #FFFFFF !important;
-    }
-/* COR DOS TEXTOS NOS INPUTS */
-        .stTextInput input, 
-        .stNumberInput input,
-        .stSelectbox select,
-        .stTextArea textarea,
-        .stDateInput input,
-        .stTimeInput input,
-        .stSlider input {
-            color: #202124 !important;
-        }
-        
-        /* COR DOS RÓTULOS DOS INPUTS (LABELS) */
-        .stTextInput label,
-        .stNumberInput label,
-        .stSelectbox label,
-        .stTextArea label,
-        .stDateInput label,
-        .stTimeInput label,
-        .stSlider label {
+
+        /* ===== CORREÇÕES GERAIS ===== */
+        /* Corrige a cor do texto em radio buttons e checkboxes */
+        .stRadio [role="radiogroup"] > label,
+        .stCheckbox [role="checkbox"] > label {
             color: #FFFFFF !important;
         }
-        
-        /* CARDS DE RESULTADO (MÉTRICAS) - AZUL VIBRANTE */
-        .stMetric {
-            background-color: #3A3B3F;
-            border-radius: 10px;
-            padding: 15px;
-            border-left: 5px solid #0068E6;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+        /* Corrige a cor do texto em tooltips */
+        .stTooltip {
+            color: #202124 !important;
         }
     </style>
     """, unsafe_allow_html=True)
