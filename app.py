@@ -76,7 +76,13 @@ def set_theme():
         color: #202124 !important;
         font-size: 14px !important;
     }
-    
+        /* CONFIGURAÇÕES DO STREAMLIT (canto superior direito) */
+    .st-emotion-cache-1wbqy5l {
+        background-color: #292A2D !important;
+    }
+    .st-emotion-cache-1wbqy5l e1f1d6gn0 {
+        color: white !important;
+    }
     .stMetric div {
         color: #202124 !important;
         font-size: 24px !important;
@@ -89,10 +95,10 @@ def set_theme():
     }
     
     /* BOTÃO CALCULAR */
-    div.stButton > button:first-child {
-        background-color: #3C9EFF !important;
-        color: white !important;
-        border: none !important;
+    .st-emotionton > button:first-child {
+        background-color: #292A2D !important;  /* Fundo preto */
+        color: white !important;              /* Texto branco */
+        border: 1px solid #3A3A3A !important;
         border-radius: 6px;
         font-weight: 500;
     }
@@ -105,9 +111,9 @@ def set_theme():
     
     /* BOTÃO REINICIAR */
     .reset-button button {
-        background-color: #FF4B4B !important;
-        color: white !important;
-        border: none;
+        background-color: #292A2D !important;  /* Fundo preto */
+        color: white !important;              /* Texto branco */
+        border: 1px solid #3A3A3A !important;
         border-radius: 6px;
         font-weight: 500;
     }
