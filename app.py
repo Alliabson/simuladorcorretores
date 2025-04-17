@@ -214,7 +214,7 @@ def set_theme():
     }
     /* Títulos e textos gerais */
     h1, h2, h3, p {
-        color: #FFFFFF !important;
+        color: ##2A2B2E !important;
     }
     </style>
     """, unsafe_allow_html=True)
