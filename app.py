@@ -224,6 +224,44 @@ def set_theme():
             color: white !important;
             font-weight: 500 !important;
         }
+/* BOTÕES PRINCIPAIS - ESTADO NORMAL */
+        div[data-testid="stForm"] button[kind="secondaryFormSubmit"],
+        div[data-testid="stForm"] button[kind="secondary"],
+        .stDownloadButton button {
+            background-color: #4D6BFE !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 12px !important;  /* Bordas super arredondadas */
+            padding: 10px 24px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        /* EFEITO HOVER - VERMELHO INTENSO */
+        div[data-testid="stForm"] button[kind="secondaryFormSubmit"]:hover,
+        div[data-testid="stForm"] button[kind="secondary"]:hover,
+        .stDownloadButton button:hover {
+            background-color: #FF4D4D !important;  /* Vermelho vibrante */
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 8px rgba(255, 77, 77, 0.2) !important;
+        }
+
+        /* EFEITO CLIQUE */
+        div[data-testid="stForm"] button[kind="secondaryFormSubmit"]:active,
+        div[data-testid="stForm"] button[kind="secondary"]:active,
+        .stDownloadButton button:active {
+            transform: translateY(0) !important;
+            background-color: #E04444 !important;  /* Vermelho mais escuro */
+        }
+
+        /* TEXTO DOS BOTÕES */
+        div[data-testid="stForm"] button > div > p,
+        .stDownloadButton button > div > p {
+            color: white !important;
+            font-size: 14px !important;
+            margin: 0 !important;
+        }
     </style>
     """, unsafe_allow_html=True)
 
