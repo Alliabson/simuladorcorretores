@@ -164,7 +164,7 @@ def set_theme():
         /* ===== TABELAS ===== */
         .dataframe {
             background-color: #3A3B3F !important;
-            color: #FFFFFF !important;
+            color: #353535 !important;
             border-radius: 8px !important;
         }
 
