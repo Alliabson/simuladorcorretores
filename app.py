@@ -84,7 +84,7 @@ def set_theme():
         
         /* BOTÃO CALCULAR - AZUL VIBRANTE */
         div.stButton > button:first-child {
-            background-color: #0068E6 !important;
+            background-color: #202124 !important;
             color: white !important;
             border: none !important;
             border-radius: 6px;
@@ -92,14 +92,14 @@ def set_theme():
         }
         
         div.stButton > button:first-child:hover {
-            background-color: #0052B4 !important;
+            background-color: #202124 !important;
             transform: translateY(-1px);
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         
         /* BOTÃO REINICIAR (VERMELHO) */
         .reset-button button {
-            background-color: #FF4B4B !important;
+            background-color: #202124 !important;
             color: white !important;
             border: none;
             border-radius: 6px;
@@ -107,7 +107,7 @@ def set_theme():
         }
         
         .reset-button button:hover {
-            background-color: #CC0000 !important;
+            background-color: #202124 !important;
             transform: translateY(-1px);
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
