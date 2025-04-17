@@ -227,6 +227,10 @@ def set_theme():
     color: #CCCCCC !important;
     opacity: 1;
 }
+/* Títulos e textos gerais */
+    h1, h2, h3, h4, h5, h6, p, div, span {
+        color: #FFFFFF !important;
+    }
     </style>
     """, unsafe_allow_html=True)
 
