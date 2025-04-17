@@ -172,6 +172,24 @@ def set_theme():
             padding: 2rem !important;
             overflow: auto !important;
         }
+/* Títulos específicos para cor branca */
+        h1, h2, h3, h4, h5, h6, 
+        .stMarkdown h1, .stMarkdown h2, .stMarkdown h3,
+        /* Textos de input/labels */
+        .stTextInput label, .stNumberInput label, 
+        .stSelectbox label, .stDateInput label,
+        /* Subtítulos das seções */
+        .stSubheader,
+        /* Botões de exportação */
+        .stDownloadButton label {
+            color: #FFFFFF !important;
+        }
+        
+        /* Labels específicos que não são capturados pelas regras acima */
+        div[data-testid="stForm"] label,
+        div[data-testid="stVerticalBlock"] > div > div > div > div > label {
+            color: #FFFFFF !important;
+        }
     </style>
     """, unsafe_allow_html=True)
 
