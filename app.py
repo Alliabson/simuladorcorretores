@@ -144,19 +144,32 @@ def set_theme():
         .reset-button button {
             background-color: #FF4B4B !important;
             color: white !important;
+            border: none !important;
+            border-radius: 6px !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease !important;
         }
 
         .reset-button button:hover {
             background-color: #CC0000 !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
         }
 
         /* Botões de Exportação */
         .stDownloadButton button {
             background-color: #0068E6 !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 6px !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease !important;
         }
 
         .stDownloadButton button:hover {
             background-color: #0052B4 !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
         }
 
         /* ===== TABELAS ===== */
@@ -190,6 +203,28 @@ def set_theme():
             background-color: #45464A !important;
         }
 
+        /* ===== SOLUÇÃO PARA FLICKERING (TREPIDAÇÃO) ===== */
+        [data-testid="stDataFrame-container"] {
+            will-change: transform !important;
+            contain: strict !important;
+            min-height: 400px !important;
+            transform: translate3d(0, 0, 0) !important;
+            backface-visibility: hidden !important;
+            perspective: 1000px !important;
+        }
+
+        .stDataFrame-fullscreen {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            z-index: 9999 !important;
+            background-color: #0E1117 !important;
+            padding: 2rem !important;
+            overflow: auto !important;
+        }
+
         /* ===== COMPONENTES ESPECÍFICOS ===== */
         /* Checkbox e Radio */
         .stCheckbox [role="checkbox"] > label,
@@ -214,7 +249,7 @@ def set_theme():
             background-color: #0068E6 !important;
         }
 
-        /* ===== LAYOUT ===== */
+        /* ===== LAYOUT E ALINHAMENTOS ===== */
         /* Container principal */
         .main .block-container {
             padding: 2rem 1rem !important;
@@ -233,26 +268,46 @@ def set_theme():
             margin-right: 8px !important;
         }
 
-        /* ===== FLICKERING FIX ===== */
-        [data-testid="stDataFrame-container"] {
-            will-change: transform !important;
-            contain: strict !important;
-            min-height: 400px !important;
-            transform: translate3d(0, 0, 0) !important;
-            backface-visibility: hidden !important;
-            perspective: 1000px !important;
+        /* Altura consistente para botões */
+        .stButton > button {
+            height: 38px !important;
+            padding: 0 20px !important;
+            margin: 0 !important;
         }
 
-        .stDataFrame-fullscreen {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            bottom: 0 !important;
-            z-index: 9999 !important;
-            background-color: #0E1117 !important;
-            padding: 2rem !important;
-            overflow: auto !important;
+        /* Estilo específico para o botão de reset */
+        .reset-button {
+            display: flex !important;
+            align-items: center !important;
+            height: 100% !important;
+        }
+
+        /* ===== CORREÇÕES ADICIONAIS ===== */
+        /* Ajuste para multiselect */
+        .stMultiSelect [role="button"] {
+            background-color: white !important;
+            color: #202124 !important;
+        }
+
+        /* Ajuste para date input */
+        .stDateInput > div > div > input {
+            color: #202124 !important;
+        }
+
+        /* Ajuste para markdown tables */
+        .stMarkdown table {
+            background-color: #3A3B3F !important;
+        }
+        .stMarkdown th {
+            background-color: #0068E6 !important;
+        }
+        .stMarkdown td {
+            color: #FFFFFF !important;
+        }
+
+        /* Fix para ícones em botões */
+        .stButton svg {
+            color: white !important;
         }
     </style>
     """, unsafe_allow_html=True)
