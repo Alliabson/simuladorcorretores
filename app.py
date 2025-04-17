@@ -60,7 +60,7 @@ def set_theme():
     /* FUNDO PRINCIPAL */
     .stApp {
         background-color: #1E1E1E;
-        color: #FFFFFF;
+        color: #292A2D;
     }
     
     /* CARDS DE RESULTADO (MÉTRICAS) - AZUL VIBRANTE */
