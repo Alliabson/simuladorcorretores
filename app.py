@@ -59,16 +59,16 @@ def set_theme():
  <style>
     /* FUNDO PRINCIPAL */
     .stApp {
-        background-color: #2A2B2E;
+        background-color: #1E1E1E;
         color: #FFFFFF;
     }
     
     /* CARDS DE RESULTADO (MÉTRICAS) - AZUL VIBRANTE */
     .stMetric {
-        background-color: #3A3B3F;
+        background-color: #2A2A2A;
         border-radius: 10px;
         padding: 15px;
-        border-left: 5px solid #0068E6;
+        border-left: 5px solid #3C9EFF;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     
@@ -83,9 +83,14 @@ def set_theme():
         font-weight: 600;
     }
     
+    /* Títulos */
+    h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
+        color: #FFFFFF;
+    }
+    
     /* BOTÃO CALCULAR - AZUL VIBRANTE */
     div.stButton > button:first-child {
-        background-color: #0068E6 !important;
+        background-color: #3C9EFF !important;
         color: white !important;
         border: none !important;
         border-radius: 6px;
@@ -93,7 +98,7 @@ def set_theme():
     }
     
     div.stButton > button:first-child:hover {
-        background-color: #0052B4 !important;
+        background-color: #61b4ff !important;
         transform: translateY(-1px);
         box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
@@ -115,7 +120,7 @@ def set_theme():
     
     /* BOTÕES DE EXPORTAÇÃO (AZUL VIBRANTE) */
     .stDownloadButton button {
-        background-color: #0068E6 !important;
+        background-color: #3C9EFF !important;
         color: white !important;
         border: none;
         border-radius: 6px;
@@ -124,20 +129,20 @@ def set_theme():
     }
     
     .stDownloadButton button:hover {
-        background-color: #0052B4 !important;
+        background-color: #61b4ff !important;
         transform: translateY(-1px);
         box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     
     /* TABELA - ESTILO ORIGINAL */
     .dataframe {
-        background-color: #3A3B3F !important;
+        background-color: #2A2A2A !important;
         color: #FFFFFF !important;
         border-radius: 8px;
     }
     
     .dataframe th {
-        background-color: #0068E6 !important;
+        background-color: #3C9EFF !important;
         color: white !important;
         font-weight: 600;
         padding: 12px !important;
@@ -145,15 +150,15 @@ def set_theme():
     
     .dataframe td {
         padding: 10px !important;
-        color: #FFFFFF !important;
+        color: #CFCFCF !important;
     }
     
     .dataframe tr:nth-child(even) {
-        background-color: #2E2F33 !important;
+        background-color: #1E1E1E !important;
     }
     
     .dataframe tr:hover {
-        background-color: #45464A !important;
+        background-color: #3A3A3A !important;
     }
     
     /* SOLUÇÃO PARA FLICKERING */
@@ -173,7 +178,7 @@ def set_theme():
         right: 0 !important;
         bottom: 0 !important;
         z-index: 9999 !important;
-        background-color: #2A2B2E !important;
+        background-color: #1E1E1E !important;
         padding: 2rem !important;
         overflow: auto !important;
     }
@@ -221,8 +226,8 @@ def set_theme():
     .stTextInput input, .stNumberInput input, .stSelectbox select, 
     .stDateInput input, .stTextArea textarea {
         color: #FFFFFF !important;
-        background-color: #3A3B3F !important;
-        border: 1px solid #45464A !important;
+        background-color: #292A2D !important;  /* Alterado para #292A2D */
+        border: 1px solid #3A3A3A !important;
     }
 
     /* Placeholder dos inputs */
@@ -237,15 +242,15 @@ def set_theme():
     .stTextInput input:focus, .stNumberInput input:focus, 
     .stSelectbox select:focus, .stDateInput input:focus, 
     .stTextArea textarea:focus {
-        border-color: #0068E6 !important;
-        box-shadow: 0 0 0 0.2rem rgba(0, 104, 230, 0.25) !important;
+        border-color: #3C9EFF !important;
+        box-shadow: 0 0 0 0.2rem rgba(60, 158, 255, 0.25) !important;
     }
 
     /* Dropdown do selectbox */
     .stSelectbox div[role="listbox"] {
-        background-color: #3A3B3F !important;
+        background-color: #292A2D !important;  /* Alterado para #292A2D */
         color: #FFFFFF !important;
-        border: 1px solid #45464A !important;
+        border: 1px solid #3A3A3A !important;
     }
 
     /* Opções do dropdown */
@@ -255,20 +260,20 @@ def set_theme():
 
     /* Opção selecionada no dropdown */
     .stSelectbox div[role="option"][aria-selected="true"] {
-        background-color: #0068E6 !important;
+        background-color: #3C9EFF !important;
         color: #FFFFFF !important;
     }
 
     /* Hover nas opções do dropdown */
     .stSelectbox div[role="option"]:hover {
-        background-color: #45464A !important;
+        background-color: #3A3A3A !important;
     }
 
     /* Calendário do date input */
     .stDateInput div[role="dialog"] {
-        background-color: #3A3B3F !important;
+        background-color: #292A2D !important;  /* Alterado para #292A2D */
         color: #FFFFFF !important;
-        border: 1px solid #45464A !important;
+        border: 1px solid #3A3A3A !important;
     }
 
     /* Cabeçalho do calendário */
@@ -283,24 +288,38 @@ def set_theme():
 
     /* Dia selecionado no calendário */
     .stDateInput .DayPicker-Day--selected {
-        background-color: #0068E6 !important;
+        background-color: #3C9EFF !important;
         color: #FFFFFF !important;
     }
 
     /* Hover nos dias do calendário */
     .stDateInput .DayPicker-Day:hover {
-        background-color: #45464A !important;
+        background-color: #3A3A3A !important;
     }
 
     /* Radio buttons e checkboxes */
     .stRadio [role="radiogroup"], .stCheckbox [role="group"] {
-        background-color: #3A3B3F !important;
+        background-color: #292A2D !important;  /* Alterado para #292A2D */
         border-radius: 6px;
         padding: 10px;
+        border: 1px solid #3A3A3A !important;
     }
 
     .stRadio label, .stCheckbox label {
         color: #FFFFFF !important;
+    }
+
+    /* Botões de seleção quando ativos */
+    .stRadio [role="radiogroup"] [aria-checked="true"],
+    .stCheckbox [role="group"] [aria-checked="true"] {
+        background-color: #3C9EFF !important;
+        color: white !important;
+    }
+
+    /* Botões de seleção quando hover */
+    .stRadio [role="radiogroup"] div:hover,
+    .stCheckbox [role="group"] div:hover {
+        background-color: #3A3A3A !important;
     }
 
     /* Slider */
@@ -309,7 +328,7 @@ def set_theme():
     }
 
     .stSlider .st-af {
-        background-color: #0068E6 !important;
+        background-color: #3C9EFF !important;
     }
 
     /* Títulos e textos gerais */
@@ -319,21 +338,23 @@ def set_theme():
 
     /* Container do formulário */
     .stForm {
-        background-color: #3A3B3F !important;
+        background-color: #2A2A2A !important;
         border-radius: 10px;
         padding: 15px;
         margin-bottom: 20px;
+        border: 1px solid #3A3A3A !important;
     }
-/* Botões padrão do formulário */
-.stButton button {
-    background-color: #292A2D !important;
-    color: white !important;
-    border: 1px solid #3A3A3A !important;
-}
 
-.stButton button:hover {
-    background-color: #3A3A3A !important;
-}
+    /* Botões do formulário */
+    .stButton button:not(.reset-button button):not(.stDownloadButton button) {
+        background-color: #292A2D !important;
+        color: white !important;
+        border: 1px solid #3A3A3A !important;
+    }
+
+    .stButton button:not(.reset-button button):not(.stDownloadButton button):hover {
+        background-color: #3A3A3A !important;
+    }
 </style>
     """, unsafe_allow_html=True)
 
