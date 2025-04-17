@@ -272,7 +272,18 @@ def set_theme():
     div[role="option"][aria-selected="true"] {
         background-color: #3C9EFF !important;
     }
-
+        /* Botões */
+        .stButton button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        
+        .stButton button:hover {
+            background-color: #003d82;
+        }
+        
     /* BOTÃO CLEAR CACHE */
     .st-emotion-cache-gh2jqd {
         background-color: transparent !important;
