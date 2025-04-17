@@ -213,6 +213,20 @@ def set_theme():
 .stTextArea label, .stRadio label, .stCheckbox label, .stSlider label {
     color: #FFFFFF !important;
 }
+/* Textos dentro dos inputs */
+.stTextInput input, .stNumberInput input, .stSelectbox select, .stDateInput input,
+.stTextArea textarea, .stRadio input, .stCheckbox input {
+    color: #FFFFFF !important;
+    background-color: #3A3B3F !important;
+}
+
+/* Placeholder dos inputs */
+.stTextInput input::placeholder, .stNumberInput input::placeholder,
+.stSelectbox select::placeholder, .stDateInput input::placeholder,
+.stTextArea textarea::placeholder {
+    color: #CCCCCC !important;
+    opacity: 1;
+}
 
 /* Títulos e textos gerais */
     h1, h4, h5, h6, p {
