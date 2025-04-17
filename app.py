@@ -228,7 +228,7 @@ def set_theme():
     opacity: 1;
 }
 /* Títulos e textos gerais */
-    h1, h2, h3, h4, h5, h6, p, div, span {
+    h1, h2, h3, h4, h5, h6, p {
         color: #FFFFFF !important;
     }
     </style>
