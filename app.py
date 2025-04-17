@@ -207,11 +207,7 @@ def set_theme():
         [data-testid="column"] {
             padding: 0 !important;
         }
-    /* ===== CORREÇÃO GLOBAL PARA TEXTOS ===== */
-    /* Todos os textos dentro do form */
-    div[data-testid="stForm"] * {
-        color: #2A2B2E !important;
-    }
+
     /* Títulos e textos gerais */
     h1, h2, h3, h4, h5, h6, p, div, span {
         color: #FFFFFF !important;
