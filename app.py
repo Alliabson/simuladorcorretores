@@ -214,7 +214,7 @@ def set_theme():
     .stTextInput label, .stNumberInput label, .stSelectbox label, 
     .stDateInput label, .stTextArea label, .stRadio label, 
     .stCheckbox label, .stSlider label, .stMarkdown {
-        color: #FFFFFF !important;
+        color: #202124 !important;
     }
 
     .stTextInput input, .stNumberInput input, .stSelectbox select, 
