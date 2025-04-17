@@ -207,11 +207,59 @@ def set_theme():
         [data-testid="column"] {
             padding: 0 !important;
         }
-/* Títulos e subtítulos */
+/* ===== CORREÇÃO GLOBAL PARA TEXTOS ===== */
+    /* Todos os textos dentro do form */
+    div[data-testid="stForm"] * {
+        color: #FFFFFF !important;
+    }
+    
+    /* Títulos e subtítulos */
     div[data-testid="stForm"] h1,
     div[data-testid="stForm"] h2,
     div[data-testid="stForm"] h3 {
         color: #FFFFFF !important;
+    }
+    
+    /* ===== MODALIDADE DE PAGAMENTO ===== */
+    /* Container principal */
+    div[data-testid="stForm"] div[role="radiogroup"] {
+        background-color: #3A3B3F !important;
+        padding: 12px !important;
+        border-radius: 8px !important;
+        border: 1px solid #555 !important;
+    }
+    
+    /* Itens individuais */
+    div[data-testid="stForm"] div[role="radiogroup"] > div {
+        background-color: transparent !important;
+        padding: 8px 12px !important;
+    }
+    
+    /* Radio buttons */
+    div[data-testid="stForm"] div[role="radiogroup"] [type="radio"] + div {
+        border-color: #FFFFFF !important;
+    }
+    
+    /* Radio buttons selecionados */
+    div[data-testid="stForm"] div[role="radiogroup"] [type="radio"]:checked + div {
+        border-color: #0068E6 !important;
+        background-color: #0068E6 !important;
+    }
+    
+    /* ===== INPUTS E CAMPOS DE TEXTO ===== */
+    /* Todos os inputs */
+    div[data-testid="stForm"] input,
+    div[data-testid="stForm"] textarea,
+    div[data-testid="stForm"] select {
+        background-color: #3A3B3F !important;
+        color: #FFFFFF !important;
+        border: 1px solid #555 !important;
+    }
+    
+    /* Placeholders */
+    div[data-testid="stForm"] input::placeholder {
+        color: #AAAAAA !important;
+    }
     </style>
     """, unsafe_allow_html=True)
 
