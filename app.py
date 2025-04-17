@@ -57,185 +57,79 @@ st.set_page_config(layout="wide")
 def set_theme():
     st.markdown("""
     <style>
-.stApp { background-color: #1E1E1E; }
-        [data-testid="stSidebar"] { background-color: #252526; }
-        h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 { color: #FFFFFF; }
-        .stMarkdown p, .stMarkdown li, .stText, .stNumberInput label, .stSelectbox label { color: #E0E0E0; }
+        /* Fundo principal */
+        .stApp {
+            background-color: #1E1E1E;
+        }
+        
+        /* Sidebar */
+        [data-testid="stSidebar"] {
+            background-color: #252526;
+        }
+        
+        /* Títulos */
+        h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
+            color: #FFFFFF;
+        }
+        
+        /* Texto geral */
+        .stMarkdown p, .stMarkdown li, .stText, .stNumberInput label, .stSelectbox label {
+            color: #E0E0E0;
+        }
+        
+        /* Inputs */
         .stTextInput input, .stNumberInput input, .stSelectbox select {
             background-color: #333333;
             color: #FFFFFF;
             border-color: #555555;
         }
+        
+        /* Botões */
         .stButton button {
             background-color: #0056b3;
             color: white;
             border: none;
             border-radius: 4px;
         }
-        .stButton button:hover { background-color: #003d82; }
+        
+        .stButton button:hover {
+            background-color: #003d82;
+        }
+        
+        /* Cards/metricas */
         .stMetric {
             background-color: #252526;
             border-radius: 8px;
             padding: 15px;
             border-left: 4px solid #0056b3;
         }
-        .stMetric label { color: #A0A0A0 !important; }
-        .stMetric div { color: #FFFFFF !important; font-size: 24px !important; }
-        .dataframe { background-color: #252526 !important; color: #E0E0E0 !important; }
-        .dataframe th { background-color: #0056b3 !important; color: white !important; }
-        .dataframe tr:nth-child(even) { background-color: #333333 !important; }
-        .dataframe tr:hover { background-color: #444444 !important; }
-
-        /* ===== COR DOS INPUTS E TEXTOS ===== */
-        /* Textos dentro dos inputs (formulários) */
-        .stTextInput input, 
-        .stNumberInput input,
-        .stSelectbox select,
-        .stTextArea textarea,
-        .stDateInput input,
-        .stTimeInput input,
-        .stSlider input,
-        .stTextInput input:focus, 
-        .stNumberInput input:focus,
-        .stSelectbox select:focus,
-        .stTextArea textarea:focus,
-        .stDateInput input:focus,
-        .stTimeInput input:focus {
-            color: #202124 !important;
-            background-color: white !important;
-        }
-
-        /* Rótulos (labels) dos inputs */
-        .stTextInput label,
-        .stNumberInput label,
-        .stSelectbox label,
-        .stTextArea label,
-        .stDateInput label,
-        .stTimeInput label,
-        .stSlider label,
-        .stRadio label,
-        .stCheckbox label,
-        .stMultiSelect label,
-        .stFileUploader label {
-            color: #FFFFFF !important;
-        }
-
-        /* Textos gerais */
-        body, h1, h2, h3, h4, h5, h6, p, div, span {
-            color: #FFFFFF !important;
-        }
-
-        /* ===== CARDS DE RESULTADO (MÉTRICAS) ===== */
-        .stMetric {
-            background-color: #3A3B3F !important;
-            border-radius: 10px !important;
-            padding: 15px !important;
-            border-left: 5px solid #0068E6 !important;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
-        }
-
+        
         .stMetric label {
-            color: #FFFFFF !important;
-            font-size: 14px !important;
+            color: #A0A0A0 !important;
         }
-
+        
         .stMetric div {
             color: #FFFFFF !important;
             font-size: 24px !important;
-            font-weight: 600 !important;
         }
-
-        /* ===== BOTÕES ===== */
-        /* Botão Principal */
-        div.stButton > button:first-child,
-        button.stButton {
-            background-color: #0068E6 !important;
-            color: white !important;
-            border: none !important;
-            border-radius: 6px !important;
-            font-weight: 500 !important;
-            transition: all 0.3s ease !important;
+        
+        /* Dataframe */
+        .dataframe {
+            background-color: #252526 !important;
+            color: #E0E0E0 !important;
         }
-
-        div.stButton > button:first-child:hover,
-        button.stButton:hover {
-            background-color: #0052B4 !important;
-            transform: translateY(-1px) !important;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
-        }
-
-        /* Botão Reiniciar */
-        .reset-button button {
-            background-color: #FF4B4B !important;
+        
+        .dataframe th {
+            background-color: #0056b3 !important;
             color: white !important;
         }
-
-        .reset-button button:hover {
-            background-color: #CC0000 !important;
+        
+        .dataframe tr:nth-child(even) {
+            background-color: #333333 !important;
         }
-
-        /* Botões de Exportação */
-        .stDownloadButton button {
-            background-color: #0068E6 !important;
-        }
-
-        .stDownloadButton button:hover {
-            background-color: #0052B4 !important;
-        }
-
-        /* ===== TABELAS ===== */
-        .dataframe, .stDataFrame, .stTable {
-            background-color: #3A3B3F !important;
-            color: #FFFFFF !important;
-            border-radius: 8px !important;
-        }
-
-        .dataframe th, .stDataFrame th, .stTable th {
-            background-color: #0068E6 !important;
-            color: white !important;
-            font-weight: 600 !important;
-            padding: 12px !important;
-        }
-
-        .dataframe td, .stDataFrame td, .stTable td {
-            padding: 10px !important;
-            color: #FFFFFF !important;
-        }
-
-        .dataframe tr:nth-child(even),
-        .stDataFrame tr:nth-child(even),
-        .stTable tr:nth-child(even) {
-            background-color: #2E2F33 !important;
-        }
-
-        .dataframe tr:hover,
-        .stDataFrame tr:hover,
-        .stTable tr:hover {
-            background-color: #45464A !important;
-        }
-
-        /* ===== COMPONENTES ESPECÍFICOS ===== */
-        /* Checkbox e Radio */
-        .stCheckbox [role="checkbox"] > label,
-        .stRadio [role="radiogroup"] > label {
-            color: #FFFFFF !important;
-        }
-
-        /* Tooltips */
-        .stTooltip {
-            color: #202124 !important;
-            background-color: white !important;
-        }
-
-        /* Selectbox dropdown */
-        .stSelectbox [role="listbox"] {
-            background-color: #3A3B3F !important;
-            color: #FFFFFF !important;
-        }
-
-        /* Slider */
-        .stSlider [role="slider"] {
-            background-color: #0068E6 !important;
+        
+        .dataframe tr:hover {
+            background-color: #444444 !important;
         }
 
         /* ===== LAYOUT ===== */
