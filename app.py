@@ -102,12 +102,12 @@ def set_theme():
         }
 
         .stMetric label {
-            color: #FFFFFF !important;
+            color: #2A2B2E !important;
             font-size: 14px !important;
         }
 
         .stMetric div {
-            color: #FFFFFF !important;
+            color: #2A2B2E !important;
             font-size: 24px !important;
             font-weight: 600;
         }
@@ -246,7 +246,7 @@ def set_theme():
         /* Corrige a cor do texto em radio buttons e checkboxes */
         .stRadio [role="radiogroup"] > label,
         .stCheckbox [role="checkbox"] > label {
-            color: #FFFFFF !important;
+            color: #2A2B2E !important;
         }
 
         /* Corrige a cor do texto em tooltips */
