@@ -355,6 +355,47 @@ def set_theme():
     .stButton button:not(.reset-button button):not(.stDownloadButton button):hover {
         background-color: #3A3A3A !important;
     }
+    /* Dropdown "Modalidade de Pagamento" - Ajuste de texto repetido */
+    .stSelectbox [data-baseweb="select"] div:first-child {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Opções do dropdown - Garantir que não duplique texto */
+    .stSelectbox [role="option"] > div {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    /* Botão "Clear cache" - Ajuste de estilo */
+    .st-emotion-cache-gh2jqd {
+        background-color: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        margin-top: 8px !important;
+    }
+
+    .st-emotion-cache-gh2jqd p {
+        color: #AAAAAA !important;
+        font-size: 0.8em !important;
+        margin-bottom: 4px !important;
+    }
+
+    .st-emotion-cache-gh2jqd button {
+        color: #3C9EFF !important;
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+        font-size: 0.8em !important;
+        cursor: pointer;
+    }
+
+    .st-emotion-cache-gh2jqd button:hover {
+        text-decoration: underline;
+    }
 </style>
     """, unsafe_allow_html=True)
 
