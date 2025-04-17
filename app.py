@@ -57,24 +57,31 @@ st.set_page_config(layout="wide")
 def set_theme():
     st.markdown("""
     <style>
-        /* ===== FUNDO PRINCIPAL ===== */
-        .stApp {
-            background-color: #0E1117;
+/* ===== FUNDO PRINCIPAL ALINHADO AO TEMA DARK ===== */
+        .stApp, .main .block-container {
+            background-color: var(--background-color) !important;
         }
 
-        /* ===== COR DOS INPUTS E TEXTOS ===== */
-        /* Textos dentro dos inputs (formulários) */
+        /* ===== INPUTS (MANTENDO SEU ESTILO ORIGINAL) ===== */
         .stTextInput input, 
         .stNumberInput input,
         .stSelectbox select,
         .stTextArea textarea,
         .stDateInput input,
         .stTimeInput input,
-        .stSlider input {
+        .stSlider input,
+        .stTextInput input:focus, 
+        .stNumberInput input:focus,
+        .stSelectbox select:focus,
+        .stTextArea textarea:focus,
+        .stDateInput input:focus,
+        .stTimeInput input:focus {
             color: #202124 !important;
+            background-color: white !important;
+            border-radius: 4px !important;
         }
 
-        /* Rótulos (labels) dos inputs */
+        /* ===== RÓTULOS E TEXTOS ===== */
         .stTextInput label,
         .stNumberInput label,
         .stSelectbox label,
@@ -83,8 +90,11 @@ def set_theme():
         .stTimeInput label,
         .stSlider label,
         .stRadio label,
-        .stCheckbox label {
-            color: #202124 !important;
+        .stCheckbox label,
+        .stMultiSelect label,
+        .stFileUploader label {
+            color: var(--text-color) !important;
+            font-weight: 500 !important;
         }
 
         /* Textos gerais (títulos, parágrafos, etc.) */
@@ -164,7 +174,7 @@ def set_theme():
         /* ===== TABELAS ===== */
         .dataframe {
             background-color: #3A3B3F !important;
-            color: #353535 !important;
+            color: #FFFFFF !important;
             border-radius: 8px !important;
         }
 
