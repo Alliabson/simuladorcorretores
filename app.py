@@ -57,31 +57,24 @@ st.set_page_config(layout="wide")
 def set_theme():
     st.markdown("""
     <style>
-        /* ===== FUNDO PRINCIPAL ALINHADO AO TEMA DARK ===== */
-        .stApp, .main .block-container {
-            background-color: var(--background-color) !important;
+        /* ===== FUNDO PRINCIPAL ===== */
+        .stApp {
+            background-color: #0E1117;
         }
 
-        /* ===== INPUTS (MANTENDO SEU ESTILO ORIGINAL) ===== */
+        /* ===== COR DOS INPUTS E TEXTOS ===== */
+        /* Textos dentro dos inputs (formulários) */
         .stTextInput input, 
         .stNumberInput input,
         .stSelectbox select,
         .stTextArea textarea,
         .stDateInput input,
         .stTimeInput input,
-        .stSlider input,
-        .stTextInput input:focus, 
-        .stNumberInput input:focus,
-        .stSelectbox select:focus,
-        .stTextArea textarea:focus,
-        .stDateInput input:focus,
-        .stTimeInput input:focus {
+        .stSlider input {
             color: #202124 !important;
-            background-color: white !important;
-            border-radius: 4px !important;
         }
 
-        /* ===== RÓTULOS E TEXTOS ===== */
+        /* Rótulos (labels) dos inputs */
         .stTextInput label,
         .stNumberInput label,
         .stSelectbox label,
@@ -90,154 +83,179 @@ def set_theme():
         .stTimeInput label,
         .stSlider label,
         .stRadio label,
-        .stCheckbox label,
-        .stMultiSelect label,
-        .stFileUploader label {
-            color: var(--text-color) !important;
-            font-weight: 500 !important;
+        .stCheckbox label {
+            color: #FFFFFF !important;
         }
 
-        /* ===== CARDS DE MÉTRICAS ===== */
+        /* Textos gerais (títulos, parágrafos, etc.) */
+        h1, h2, h3, h4, h5, h6, p, div, span {
+            color: #FFFFFF !important;
+        }
+
+        /* ===== CARDS DE RESULTADO (MÉTRICAS) ===== */
         .stMetric {
-            background-color: var(--secondary-background-color) !important;
-            border-radius: 10px !important;
-            padding: 15px !important;
-            border-left: 5px solid var(--primary-color) !important;
-            box-shadow: var(--shadow-sm) !important;
+            background-color: #3A3B3F;
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 5px solid #0068E6;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .stMetric label {
-            color: var(--text-color) !important;
+            color: #2A2B2E !important;
             font-size: 14px !important;
-            opacity: 0.9 !important;
         }
 
         .stMetric div {
-            color: var(--text-color) !important;
+            color: #2A2B2E !important;
             font-size: 24px !important;
-            font-weight: 600 !important;
+            font-weight: 600;
         }
 
-        /* ===== BOTÕES PRINCIPAIS ===== */
-        div.stButton > button:first-child,
-        button.stButton {
-            background-color: var(--primary-color) !important;
+        /* ===== BOTÕES ===== */
+        /* Botão Calcular - Azul Vibrante */
+        div.stButton > button:first-child {
+            background-color: #0068E6 !important;
             color: white !important;
             border: none !important;
-            border-radius: 6px !important;
-            font-weight: 500 !important;
-            transition: all 0.3s ease !important;
-            padding: 0.5rem 1rem !important;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
-        div.stButton > button:first-child:hover,
-        button.stButton:hover {
+        div.stButton > button:first-child:hover {
             background-color: #0052B4 !important;
-            transform: translateY(-1px) !important;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
-        /* ===== BOTÃO RESET (VERMELHO) ===== */
+        /* Botão Reiniciar - Vermelho */
         .reset-button button {
             background-color: #FF4B4B !important;
             color: white !important;
             border: none !important;
             border-radius: 6px !important;
             font-weight: 500 !important;
+            transition: all 0.3s ease !important;
         }
 
         .reset-button button:hover {
             background-color: #CC0000 !important;
             transform: translateY(-1px) !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
         }
 
-        /* ===== BOTÕES DE DOWNLOAD ===== */
+        /* Botões de Exportação */
         .stDownloadButton button {
-            background-color: var(--primary-color) !important;
+            background-color: #0068E6 !important;
             color: white !important;
+            border: none !important;
             border-radius: 6px !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease !important;
         }
 
         .stDownloadButton button:hover {
             background-color: #0052B4 !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
         }
 
-        /* ===== TABELAS ESTILIZADAS ===== */
-        .dataframe, .stDataFrame, .stTable {
-            background-color: var(--secondary-background-color) !important;
-            color: var(--text-color) !important;
+        /* ===== TABELAS ===== */
+        .dataframe {
+            background-color: #3A3B3F !important;
+            color: #FFFFFF !important;
             border-radius: 8px !important;
-            border: 1px solid rgba(255,255,255,0.1) !important;
         }
 
-        .dataframe th, .stDataFrame th, .stTable th {
-            background-color: var(--primary-color) !important;
+        .dataframe th {
+            background-color: #0068E6 !important;
             color: white !important;
             font-weight: 600 !important;
             padding: 12px !important;
         }
 
-        .dataframe td, .stDataFrame td, .stTable td {
+        .dataframe td {
             padding: 10px !important;
-            color: var(--text-color) !important;
-            border-color: rgba(255,255,255,0.05) !important;
+            color: #FFFFFF !important;
         }
 
         .dataframe tr:nth-child(even) {
-            background-color: rgba(255,255,255,0.03) !important;
+            background-color: #2E2F33 !important;
         }
 
         .dataframe tr:hover {
-            background-color: rgba(0, 104, 230, 0.1) !important;
+            background-color: #45464A !important;
         }
 
-        /* ===== COMPONENTES ESPECIAIS ===== */
-        /* Checkbox e Radio */
-        .stCheckbox [role="checkbox"] > label,
-        .stRadio [role="radiogroup"] > label {
-            color: var(--text-color) !important;
-        }
-
-        /* Tooltip */
-        .stTooltip {
-            color: #202124 !important;
-            background-color: white !important;
-            border-radius: 4px !important;
-        }
-
-        /* Dropdowns */
-        .stSelectbox [role="listbox"] {
-            background-color: var(--secondary-background-color) !important;
-            color: var(--text-color) !important;
-            border: 1px solid rgba(255,255,255,0.1) !important;
-        }
-
-        /* Slider */
-        .stSlider [role="slider"] {
-            background-color: var(--primary-color) !important;
-        }
-
-        /* ===== LAYOUT ===== */
-        .main .block-container {
-            padding: 2rem 1rem !important;
-            max-width: 90% !important;
-        }
-
-        [data-testid="column"] {
-            padding: 0.5rem !important;
-        }
-
-        /* ===== OTIMIZAÇÕES ===== */
+        /* ===== SOLUÇÃO PARA FLICKERING ===== */
         [data-testid="stDataFrame-container"] {
             will-change: transform;
             contain: strict;
+            min-height: 400px;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
         }
 
         .stDataFrame-fullscreen {
-            background-color: var(--background-color) !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            z-index: 9999 !important;
+            background-color: #2A2B2E !important;
+            padding: 2rem !important;
+            overflow: auto !important;
+        }
+
+        /* ===== LAYOUT E ALINHAMENTOS ===== */
+        /* Alinhamento dos botões */
+        div[data-testid="column"] {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* Espaçamento entre os botões */
+        .stButton:first-of-type {
+            margin-right: 8px;
+        }
+
+        /* Altura consistente para botões */
+        .stButton > button {
+            height: 38px;
+            padding: 0 20px;
+            margin: 0;
+        }
+
+        /* Estilo específico para o botão de reset */
+        .reset-button {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        /* Remove espaçamento extra das colunas */
+        [data-testid="column"] {
+            padding: 0 !important;
+        }
+
+        /* ===== CORREÇÕES GERAIS ===== */
+        /* Corrige a cor do texto em radio buttons e checkboxes */
+        .stRadio [role="radiogroup"] > label,
+        .stCheckbox [role="checkbox"] > label {
+            color: #2A2B2E !important;
+        }
+
+        /* Corrige a cor do texto em tooltips */
+        .stTooltip {
+            color: #202124 !important;
         }
     </style>
     """, unsafe_allow_html=True)
+
 
 
 # Função de formatação de moeda robusta
