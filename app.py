@@ -61,28 +61,6 @@ def set_theme():
         .stApp {
             background-color: #0E1117;
         }
-/* === FORÇA O TEMA DARK PADRÃO === */
-        :root {
-            --primary-color: #0068E6 !important;
-            --background-color: #0E1117 !important;
-            --secondary-background-color: #1E1E1E !important;
-            --text-color: #FAFAFA !important;
-        }
-        
-        /* === SEUS COMPONENTES PERSONALIZADOS === */
-        /* Botão de Reset (vermelho) */
-        .reset-button button {
-            background-color: #FF4B4B !important;
-        }
-        .reset-button button:hover {
-            background-color: #CC0000 !important;
-        }
-        
-        /* Efeito hover em botões */
-        button:hover {
-            transform: translateY(-1px);
-            transition: all 0.2s ease;
-        }
 
         /* ===== COR DOS INPUTS E TEXTOS ===== */
         /* Textos dentro dos inputs (formulários) */
@@ -106,7 +84,7 @@ def set_theme():
         .stSlider label,
         .stRadio label,
         .stCheckbox label {
-            color: #FFFFFF !important;
+            color: #202124 !important;
         }
 
         /* Textos gerais (títulos, parágrafos, etc.) */
