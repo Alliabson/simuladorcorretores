@@ -56,14 +56,14 @@ st.set_page_config(layout="wide")
 
 def set_theme():
     st.markdown("""
- <style>
+<style>
     /* FUNDO PRINCIPAL */
     .stApp {
-        background-color: #292A2D;
-        color: #292A2D;
+        background-color: #1E1E1E;
+        color: #FFFFFF;
     }
     
-    /* CARDS DE RESULTADO (MÉTRICAS) - AZUL VIBRANTE */
+    /* CARDS DE RESULTADO (MÉTRICAS) */
     .stMetric {
         background-color: #2A2A2A;
         border-radius: 10px;
@@ -83,12 +83,12 @@ def set_theme():
         font-weight: 600;
     }
     
-    /* Títulos */
+    /* TÍTULOS */
     h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
         color: #FFFFFF;
     }
     
-    /* BOTÃO CALCULAR - AZUL VIBRANTE */
+    /* BOTÃO CALCULAR */
     div.stButton > button:first-child {
         background-color: #3C9EFF !important;
         color: white !important;
@@ -103,7 +103,7 @@ def set_theme():
         box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     
-    /* BOTÃO REINICIAR (VERMELHO) */
+    /* BOTÃO REINICIAR */
     .reset-button button {
         background-color: #FF4B4B !important;
         color: white !important;
@@ -118,7 +118,7 @@ def set_theme():
         box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     
-    /* BOTÕES DE EXPORTAÇÃO (AZUL VIBRANTE) */
+    /* BOTÕES DE EXPORTAÇÃO */
     .stDownloadButton button {
         background-color: #3C9EFF !important;
         color: white !important;
@@ -134,7 +134,7 @@ def set_theme():
         box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     
-    /* TABELA - ESTILO ORIGINAL */
+    /* TABELA */
     .dataframe {
         background-color: #2A2A2A !important;
         color: #FFFFFF !important;
@@ -183,54 +183,47 @@ def set_theme():
         overflow: auto !important;
     }
     
-    /* ESTILOS PARA ALINHAMENTO DOS BOTÕES */
+    /* ALINHAMENTO DOS BOTÕES */
     div[data-testid="column"] {
         display: flex;
         align-items: center;
         justify-content: flex-start;
     }
     
-    /* Espaçamento entre os botões */
     .stButton:first-of-type {
         margin-right: 8cm;
     }
     
-    /* Garante que os botões tenham a mesma altura */
     .stButton > button {
         height: 38px;
         padding: 0 20px;
         margin: 0;
     }
     
-    /* Estilo específico para o botão de reset */
     .reset-button {
         display: flex;
         align-items: center;
         height: 100%;
     }
     
-    /* Remove espaçamento extra das colunas */
     [data-testid="column"] {
         padding: 0 !important;
     }
 
-    /* ===== ESTILOS DO FORMULÁRIO ===== */
-    /* Textos dos labels */
+    /* FORMULÁRIO */
     .stTextInput label, .stNumberInput label, .stSelectbox label, 
     .stDateInput label, .stTextArea label, .stRadio label, 
     .stCheckbox label, .stSlider label, .stMarkdown {
         color: #FFFFFF !important;
     }
 
-    /* Textos dentro dos inputs */
     .stTextInput input, .stNumberInput input, .stSelectbox select, 
     .stDateInput input, .stTextArea textarea {
         color: #FFFFFF !important;
-        background-color: #292A2D !important;  /* Alterado para #292A2D */
+        background-color: #292A2D !important;
         border: 1px solid #3A3A3A !important;
     }
 
-    /* Placeholder dos inputs */
     .stTextInput input::placeholder, .stNumberInput input::placeholder,
     .stSelectbox select::placeholder, .stDateInput input::placeholder,
     .stTextArea textarea::placeholder {
@@ -238,7 +231,6 @@ def set_theme():
         opacity: 1;
     }
 
-    /* Borda dos inputs quando em foco */
     .stTextInput input:focus, .stNumberInput input:focus, 
     .stSelectbox select:focus, .stDateInput input:focus, 
     .stTextArea textarea:focus {
@@ -246,142 +238,49 @@ def set_theme():
         box-shadow: 0 0 0 0.2rem rgba(60, 158, 255, 0.25) !important;
     }
 
-    /* Dropdown do selectbox */
-    .stSelectbox div[role="listbox"] {
-        background-color: #292A2D !important;  /* Alterado para #292A2D */
-        color: #FFFFFF !important;
-        border: 1px solid #3A3A3A !important;
-    }
-
-    /* Opções do dropdown */
-    .stSelectbox div[role="option"] {
-        color: #FFFFFF !important;
-    }
-
-    /* Opção selecionada no dropdown */
-    .stSelectbox div[role="option"][aria-selected="true"] {
-        background-color: #3C9EFF !important;
-        color: #FFFFFF !important;
-    }
-
-    /* Hover nas opções do dropdown */
-    .stSelectbox div[role="option"]:hover {
-        background-color: #3A3A3A !important;
-    }
-
-    /* Calendário do date input */
-    .stDateInput div[role="dialog"] {
-        background-color: #292A2D !important;  /* Alterado para #292A2D */
-        color: #FFFFFF !important;
-        border: 1px solid #3A3A3A !important;
-    }
-
-    /* Cabeçalho do calendário */
-    .stDateInput .DayPicker-Caption {
-        color: #FFFFFF !important;
-    }
-
-    /* Dias do calendário */
-    .stDateInput .DayPicker-Day {
-        color: #FFFFFF !important;
-    }
-
-    /* Dia selecionado no calendário */
-    .stDateInput .DayPicker-Day--selected {
-        background-color: #3C9EFF !important;
-        color: #FFFFFF !important;
-    }
-
-    /* Hover nos dias do calendário */
-    .stDateInput .DayPicker-Day:hover {
-        background-color: #3A3A3A !important;
-    }
-
-    /* Radio buttons e checkboxes */
-    .stRadio [role="radiogroup"], .stCheckbox [role="group"] {
-        background-color: #292A2D !important;  /* Alterado para #292A2D */
-        border-radius: 6px;
-        padding: 10px;
-        border: 1px solid #3A3A3A !important;
-    }
-
-    .stRadio label, .stCheckbox label {
-        color: #FFFFFF !important;
-    }
-
-    /* Botões de seleção quando ativos */
-    .stRadio [role="radiogroup"] [aria-checked="true"],
-    .stCheckbox [role="group"] [aria-checked="true"] {
-        background-color: #3C9EFF !important;
-        color: white !important;
-    }
-
-    /* Botões de seleção quando hover */
-    .stRadio [role="radiogroup"] div:hover,
-    .stCheckbox [role="group"] div:hover {
-        background-color: #3A3A3A !important;
-    }
-
-    /* Slider */
-    .stSlider .st-ae {
-        color: #FFFFFF !important;
-    }
-
-    .stSlider .st-af {
-        background-color: #3C9EFF !important;
-    }
-
-    /* Títulos e textos gerais */
-    h1, h2, h3, h4, h5, h6, p, div, span {
-        color: #FFFFFF !important;
-    }
-
-    /* Container do formulário */
-    .stForm {
-        background-color: #2A2A2A !important;
-        border-radius: 10px;
-        padding: 15px;
-        margin-bottom: 20px;
-        border: 1px solid #3A3A3A !important;
-    }
-
-    /* Botões do formulário */
-    .stButton button:not(.reset-button button):not(.stDownloadButton button) {
+    /* DROPDOWN ESPECÍFICO */
+    div[data-baseweb="select"] {
         background-color: #292A2D !important;
-        color: white !important;
         border: 1px solid #3A3A3A !important;
+        border-radius: 6px !important;
     }
 
-    .stButton button:not(.reset-button button):not(.stDownloadButton button):hover {
+    div[data-baseweb="select"] > div:first-child {
+        color: #FFFFFF !important;
+        padding: 10px !important;
+    }
+
+    div[data-baseweb="select"] svg {
+        fill: #FFFFFF !important;
+    }
+
+    div[role="listbox"] {
+        background-color: #292A2D !important;
+        border: 1px solid #3A3A3A !important;
+        margin-top: 5px !important;
+    }
+
+    div[role="option"] {
+        color: #FFFFFF !important;
+        padding: 10px 12px !important;
+    }
+
+    div[role="option"]:hover {
         background-color: #3A3A3A !important;
     }
-    /* Dropdown "Modalidade de Pagamento" - Ajuste de texto repetido */
-    .stSelectbox [data-baseweb="select"] div:first-child {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+
+    div[role="option"][aria-selected="true"] {
+        background-color: #3C9EFF !important;
     }
 
-    /* Opções do dropdown - Garantir que não duplique texto */
-    .stSelectbox [role="option"] > div {
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-    /* Botão "Clear cache" - Ajuste de estilo */
+    /* BOTÃO CLEAR CACHE */
     .st-emotion-cache-gh2jqd {
         background-color: transparent !important;
         border: none !important;
-        padding: 0 !important;
-        margin-top: 8px !important;
     }
 
     .st-emotion-cache-gh2jqd p {
         color: #AAAAAA !important;
-        font-size: 0.8em !important;
-        margin-bottom: 4px !important;
     }
 
     .st-emotion-cache-gh2jqd button {
@@ -389,12 +288,25 @@ def set_theme():
         background: none !important;
         border: none !important;
         padding: 0 !important;
-        font-size: 0.8em !important;
         cursor: pointer;
     }
 
     .st-emotion-cache-gh2jqd button:hover {
         text-decoration: underline;
+    }
+
+    /* TEXTO GERAL */
+    h1, h2, h3, h4, h5, h6, p, div, span {
+        color: #FFFFFF !important;
+    }
+
+    /* CONTAINER DO FORMULÁRIO */
+    .stForm {
+        background-color: #2A2A2A !important;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid #3A3A3A !important;
     }
 </style>
     """, unsafe_allow_html=True)
