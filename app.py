@@ -57,10 +57,34 @@ st.set_page_config(layout="wide")
 def set_theme():
     st.markdown("""
     <style>
-        /* ===== FUNDO PRINCIPAL ===== */
-        .stApp, .main .block-container {
-            background-color: #0E1117 !important;
+.stApp { background-color: #1E1E1E; }
+        [data-testid="stSidebar"] { background-color: #252526; }
+        h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 { color: #FFFFFF; }
+        .stMarkdown p, .stMarkdown li, .stText, .stNumberInput label, .stSelectbox label { color: #E0E0E0; }
+        .stTextInput input, .stNumberInput input, .stSelectbox select {
+            background-color: #333333;
+            color: #FFFFFF;
+            border-color: #555555;
         }
+        .stButton button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        .stButton button:hover { background-color: #003d82; }
+        .stMetric {
+            background-color: #252526;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #0056b3;
+        }
+        .stMetric label { color: #A0A0A0 !important; }
+        .stMetric div { color: #FFFFFF !important; font-size: 24px !important; }
+        .dataframe { background-color: #252526 !important; color: #E0E0E0 !important; }
+        .dataframe th { background-color: #0056b3 !important; color: white !important; }
+        .dataframe tr:nth-child(even) { background-color: #333333 !important; }
+        .dataframe tr:hover { background-color: #444444 !important; }
 
         /* ===== COR DOS INPUTS E TEXTOS ===== */
         /* Textos dentro dos inputs (formulários) */
