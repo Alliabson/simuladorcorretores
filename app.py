@@ -65,22 +65,45 @@ def set_theme():
         --text-color: #FFFFFF;      /* Texto branco */
         --button-bg: #202124;       /* Fundo dos botões principais */
         --hover-effect: rgba(255, 255, 255, 0.05); /* Efeito hover */
+        --form-button-bg: #202124;  /* Específico para botões em forms */
     }
 
     /* ===== RESET COMPLETO DO TEMA ===== */
     html, body, .stApp, .main, .block-container,
-    .stApp > div:first-child, [data-testid="stAppViewContainer"] {
+    .stApp > div:first-child, [data-testid="stAppViewContainer"],
+    [data-testid="stForm"] {
         background-color: var(--primary-bg) !important;
         background-image: none !important;
         color: var(--text-color) !important;
     }
 
-    /* ===== BOTÕES PRINCIPAIS ===== */
-    /* Botão Calcular */
+    /* ===== SOLUÇÃO DEFINITIVA PARA BOTÕES EM FORMS ===== */
+    /* Todos os botões dentro de forms */
+    [data-testid="stForm"] button {
+        background-color: var(--form-button-bg) !important;
+        color: var(--text-color) !important;
+        border: none !important;
+        border-radius: 6px !important;
+        font-weight: 500 !important;
+        padding: 0.5rem 1rem !important;
+        transition: all 0.3s ease !important;
+    }
+
+    /* Hover para botões em forms */
+    [data-testid="stForm"] button:hover {
+        background-color: var(--form-button-bg) !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    /* Exceção para botões de download */
+    [data-testid="stForm"] .stDownloadButton button {
+        background-color: var(--accent-color) !important;
+    }
+
+    /* ===== BOTÕES PRINCIPAIS (FORA DE FORMS) ===== */
     div.stButton > button:first-child,
-    /* Botão Reiniciar */
     .reset-button button,
-    /* Todos os botões padrão (exceto download) */
     button:not(.stDownloadButton button):not(.st-emotion-cache-1xw8zd0) {
         background-color: var(--button-bg) !important;
         color: var(--text-color) !important;
@@ -91,7 +114,7 @@ def set_theme():
         transition: all 0.3s ease !important;
     }
 
-    /* Efeito hover para botões */
+    /* Efeito hover para botões principais */
     div.stButton > button:first-child:hover,
     .reset-button button:hover {
         background-color: var(--button-bg) !important;
@@ -255,7 +278,34 @@ def set_theme():
     }
     </style>
     """, unsafe_allow_html=True)
-
+from streamlit.components.v1 import html
+html("""
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    function styleFormButtons() {
+        // Botões em forms
+        document.querySelectorAll('[data-testid="stForm"] button').forEach(btn => {
+            if(!btn.classList.contains('stDownloadButton')) {
+                btn.style.backgroundColor = '#202124';
+                btn.style.color = 'white';
+                btn.style.border = 'none';
+                btn.style.borderRadius = '6px';
+            }
+        });
+        
+        // Outros botões
+        document.querySelectorAll('button:not([data-testid="baseButton-secondary"]):not(.stDownloadButton)').forEach(btn => {
+            btn.style.backgroundColor = '#202124';
+            btn.style.color = 'white';
+        });
+    }
+    
+    // Executa imediatamente e a cada 500ms para pegar elementos dinâmicos
+    styleFormButtons();
+    setInterval(styleFormButtons, 500);
+});
+</script>
+""")
 
 # Função de formatação de moeda robusta
 def formatar_moeda(valor, simbolo=True):
