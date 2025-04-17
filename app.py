@@ -229,7 +229,7 @@ def set_theme():
 }
 
 /* Títulos e textos gerais */
-    h1, h4, h5, h6, {
+    h1, h4, h5, h6, p {
         color: #FFFFFF !important;
     }
     </style>
