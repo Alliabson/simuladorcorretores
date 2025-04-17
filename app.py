@@ -276,53 +276,58 @@ def set_theme():
         background-color: var(--button-bg) !important;
         color: var(--text-color) !important;
     }
-    /* ===== SOLUÇÃO DEFINITIVA PARA RADIO BUTTONS NO FORM ===== */
+       /* ===== CORREÇÃO GLOBAL PARA TEXTOS ===== */
+    /* Todos os textos dentro do form */
+    div[data-testid="stForm"] * {
+        color: #FFFFFF !important;
+    }
+    
+    /* Títulos e subtítulos */
+    div[data-testid="stForm"] h1,
+    div[data-testid="stForm"] h2,
+    div[data-testid="stForm"] h3 {
+        color: #FFFFFF !important;
+    }
+    
+    /* ===== MODALIDADE DE PAGAMENTO ===== */
     /* Container principal */
     div[data-testid="stForm"] div[role="radiogroup"] {
         background-color: #3A3B3F !important;
-        padding: 12px;
-        border-radius: 8px;
-        margin: 8px 0;
+        padding: 12px !important;
+        border-radius: 8px !important;
+        border: 1px solid #555 !important;
     }
-
-    /* Itens individuais (mensal, anual, etc) */
+    
+    /* Itens individuais */
     div[data-testid="stForm"] div[role="radiogroup"] > div {
         background-color: transparent !important;
-        padding: 8px 12px;
-        border-radius: 4px;
-        margin: 4px 0;
-        transition: all 0.3s;
+        padding: 8px 12px !important;
     }
-
-    /* Efeito hover nos itens */
-    div[data-testid="stForm"] div[role="radiogroup"] > div:hover {
-        background-color: #45464A !important;
-    }
-
-    /* Labels (texto) */
-    div[data-testid="stForm"] div[role="radiogroup"] label {
-        color: white !important;
-        font-weight: 500;
-        margin-left: 8px;
-    }
-
-    /* Círculo do radio button */
+    
+    /* Radio buttons */
     div[data-testid="stForm"] div[role="radiogroup"] [type="radio"] + div {
-        border-color: white !important;
-        background-color: transparent !important;
+        border-color: #FFFFFF !important;
     }
-
-    /* Ponto central (quando selecionado) */
+    
+    /* Radio buttons selecionados */
     div[data-testid="stForm"] div[role="radiogroup"] [type="radio"]:checked + div {
         border-color: #0068E6 !important;
         background-color: #0068E6 !important;
     }
-
-    /* ===== GARANTIA PARA ELEMENTOS DINÂMICOS ===== */
-    /* Remove fundo branco padrão */
-    div[data-testid="stForm"] div[data-baseweb="radio"] {
-        background-color: transparent !important;
+    
+    /* ===== INPUTS E CAMPOS DE TEXTO ===== */
+    /* Todos os inputs */
+    div[data-testid="stForm"] input,
+    div[data-testid="stForm"] textarea,
+    div[data-testid="stForm"] select {
+        background-color: #3A3B3F !important;
+        color: #FFFFFF !important;
+        border: 1px solid #555 !important;
     }
+    
+    /* Placeholders */
+    div[data-testid="stForm"] input::placeholder {
+        color: #AAAAAA !important;
     </style>
     """, unsafe_allow_html=True)
 
