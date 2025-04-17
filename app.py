@@ -57,6 +57,33 @@ st.set_page_config(layout="wide")
 def set_theme():
     st.markdown("""
 <style>
+    :root {
+        /* DEFINIÇÕES DE CORES PRINCIPAIS */
+        --primary: #2A2B2E;
+        --background: #2A2B2E;
+        --secondary-background: #3A3B3F;
+        --text: #FFFFFF;
+        --font: "Source Sans Pro", sans-serif;
+    }
+    
+    /* RESET COMPLETO DO TEMA */
+    .stApp {
+        background: var(--background) !important;
+        color: var(--text) !important;
+        font-family: var(--font) !important;
+    }
+    
+    /* REMOVE EFEITOS INDESEJADOS */
+    .stApp > div:first-child {
+        background-image: none !important;
+    }
+    
+    /* BOTÕES - SOLUÇÃO DEFINITIVA */
+    button[kind="primary"], .stButton>button {
+        background: var(--primary) !important;
+        color: white !important;
+        border: none !important;
+    }
         /* FUNDO PRINCIPAL */
         .stApp {
             background-color: #2A2B2E;
