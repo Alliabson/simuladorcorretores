@@ -56,163 +56,275 @@ st.set_page_config(layout="wide")
 
 def set_theme():
     st.markdown("""
-    <style>
-        /* FUNDO PRINCIPAL */
-        .stApp {
-            background-color: #1E1E1E;
-        }
-        
-        /* CARDS DE RESULTADO (MÉTRICAS) - AZUL VIBRANTE */
-        .stMetric {
-            background-color: #2A2A2A;
-            border-radius: 10px;
-            padding: 15px;
-            border-left: 5px solid #3C9EFF;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .stMetric label {
-            color: #FFFFFF !important;
-            font-size: 14px !important;
-        }
-        
-        .stMetric div {
-            color: #FFFFFF !important;
-            font-size: 24px !important;
-            font-weight: 600;
-        }
-        
-        /* Títulos */
-        h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
-            color: #FFFFFF;
-        }
-        
-        /* BOTÃO CALCULAR - AZUL VIBRANTE */
-        div.stButton > button:first-child {
-            background-color: #3C9EFF !important;
-            color: white !important;
-            border: none !important;
-            border-radius: 6px;
-            font-weight: 500;
-        }
-        
-        div.stButton > button:first-child:hover {
-            background-color: #61b4ff !important;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-        
-        /* BOTÃO REINICIAR (VERMELHO) */
-        .reset-button button {
-            background-color: #FF4B4B !important;
-            color: white !important;
-            border: none;
-            border-radius: 6px;
-            font-weight: 500;
-        }
-        
-        .reset-button button:hover {
-            background-color: #CC0000 !important;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-        
-        /* BOTÕES DE EXPORTAÇÃO (AZUL VIBRANTE) */
-        .stDownloadButton button {
-            background-color: #3C9EFF !important;
-            color: white !important;
-            border: none;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .stDownloadButton button:hover {
-            background-color: #61b4ff !important;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-        
-        /* TABELA - ESTILO ORIGINAL */
-        .dataframe {
-            background-color: #2A2A2A !important;
-            color: #FFFFFF !important;
-            border-radius: 8px;
-        }
-        
-        .dataframe th {
-            background-color: #3C9EFF !important;
-            color: white !important;
-            font-weight: 600;
-            padding: 12px !important;
-        }
-        
-        .dataframe td {
-            padding: 10px !important;
-            color: #CFCFCF !important;
-        }
-        
-        .dataframe tr:nth-child(even) {
-            background-color: #1E1E1E !important;
-        }
-        
-        .dataframe tr:hover {
-            background-color: #3A3A3A !important;
-        }
-        
-        /* SOLUÇÃO PARA FLICKERING */
-        [data-testid="stDataFrame-container"] {
-            will-change: transform;
-            contain: strict;
-            min-height: 400px;
-            transform: translate3d(0, 0, 0);
-            backface-visibility: hidden;
-            perspective: 1000px;
-        }
-        
-        .stDataFrame-fullscreen {
-            position: fixed !important;
-            top: 0 !important;#1E1E1E
-            left: 0 !important;
-            right: 0 !important;
-            bottom: 0 !important;
-            z-index: 9999 !important;
-            background-color: #1E1E1E !important;
-            padding: 2rem !important;
-            overflow: auto !important;
-        }
-        
-        /* ESTILOS PARA ALINHAMENTO DOS BOTÕES */
-        div[data-testid="column"] {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-        }
-        
-        /* Espaçamento entre os botões */
-        .stButton:first-of-type {
-            margin-right: 8cm;
-        }
-        
-        /* Garante que os botões tenham a mesma altura */
-        .stButton > button {
-            height: 38px;
-            padding: 0 20px;
-            margin: 0;
-        }
-        
-        /* Estilo específico para o botão de reset */
-        .reset-button {
-            display: flex;
-            align-items: center;
-            height: 100%;
-        }
-        
-        /* Remove espaçamento extra das colunas */
-        [data-testid="column"] {
-            padding: 0 !important;
-        }
-    </style>
+ <style>
+    /* FUNDO PRINCIPAL */
+    .stApp {
+        background-color: #2A2B2E;
+        color: #FFFFFF;
+    }
+    
+    /* CARDS DE RESULTADO (MÉTRICAS) - AZUL VIBRANTE */
+    .stMetric {
+        background-color: #3A3B3F;
+        border-radius: 10px;
+        padding: 15px;
+        border-left: 5px solid #0068E6;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .stMetric label {
+        color: #FFFFFF !important;
+        font-size: 14px !important;
+    }
+    
+    .stMetric div {
+        color: #FFFFFF !important;
+        font-size: 24px !important;
+        font-weight: 600;
+    }
+    
+    /* BOTÃO CALCULAR - AZUL VIBRANTE */
+    div.stButton > button:first-child {
+        background-color: #0068E6 !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 6px;
+        font-weight: 500;
+    }
+    
+    div.stButton > button:first-child:hover {
+        background-color: #0052B4 !important;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    
+    /* BOTÃO REINICIAR (VERMELHO) */
+    .reset-button button {
+        background-color: #FF4B4B !important;
+        color: white !important;
+        border: none;
+        border-radius: 6px;
+        font-weight: 500;
+    }
+    
+    .reset-button button:hover {
+        background-color: #CC0000 !important;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    
+    /* BOTÕES DE EXPORTAÇÃO (AZUL VIBRANTE) */
+    .stDownloadButton button {
+        background-color: #0068E6 !important;
+        color: white !important;
+        border: none;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    .stDownloadButton button:hover {
+        background-color: #0052B4 !important;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    
+    /* TABELA - ESTILO ORIGINAL */
+    .dataframe {
+        background-color: #3A3B3F !important;
+        color: #FFFFFF !important;
+        border-radius: 8px;
+    }
+    
+    .dataframe th {
+        background-color: #0068E6 !important;
+        color: white !important;
+        font-weight: 600;
+        padding: 12px !important;
+    }
+    
+    .dataframe td {
+        padding: 10px !important;
+        color: #FFFFFF !important;
+    }
+    
+    .dataframe tr:nth-child(even) {
+        background-color: #2E2F33 !important;
+    }
+    
+    .dataframe tr:hover {
+        background-color: #45464A !important;
+    }
+    
+    /* SOLUÇÃO PARA FLICKERING */
+    [data-testid="stDataFrame-container"] {
+        will-change: transform;
+        contain: strict;
+        min-height: 400px;
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+    
+    .stDataFrame-fullscreen {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        z-index: 9999 !important;
+        background-color: #2A2B2E !important;
+        padding: 2rem !important;
+        overflow: auto !important;
+    }
+    
+    /* ESTILOS PARA ALINHAMENTO DOS BOTÕES */
+    div[data-testid="column"] {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    
+    /* Espaçamento entre os botões */
+    .stButton:first-of-type {
+        margin-right: 8cm;
+    }
+    
+    /* Garante que os botões tenham a mesma altura */
+    .stButton > button {
+        height: 38px;
+        padding: 0 20px;
+        margin: 0;
+    }
+    
+    /* Estilo específico para o botão de reset */
+    .reset-button {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+    
+    /* Remove espaçamento extra das colunas */
+    [data-testid="column"] {
+        padding: 0 !important;
+    }
+
+    /* ===== ESTILOS DO FORMULÁRIO ===== */
+    /* Textos dos labels */
+    .stTextInput label, .stNumberInput label, .stSelectbox label, 
+    .stDateInput label, .stTextArea label, .stRadio label, 
+    .stCheckbox label, .stSlider label, .stMarkdown {
+        color: #FFFFFF !important;
+    }
+
+    /* Textos dentro dos inputs */
+    .stTextInput input, .stNumberInput input, .stSelectbox select, 
+    .stDateInput input, .stTextArea textarea {
+        color: #FFFFFF !important;
+        background-color: #3A3B3F !important;
+        border: 1px solid #45464A !important;
+    }
+
+    /* Placeholder dos inputs */
+    .stTextInput input::placeholder, .stNumberInput input::placeholder,
+    .stSelectbox select::placeholder, .stDateInput input::placeholder,
+    .stTextArea textarea::placeholder {
+        color: #CCCCCC !important;
+        opacity: 1;
+    }
+
+    /* Borda dos inputs quando em foco */
+    .stTextInput input:focus, .stNumberInput input:focus, 
+    .stSelectbox select:focus, .stDateInput input:focus, 
+    .stTextArea textarea:focus {
+        border-color: #0068E6 !important;
+        box-shadow: 0 0 0 0.2rem rgba(0, 104, 230, 0.25) !important;
+    }
+
+    /* Dropdown do selectbox */
+    .stSelectbox div[role="listbox"] {
+        background-color: #3A3B3F !important;
+        color: #FFFFFF !important;
+        border: 1px solid #45464A !important;
+    }
+
+    /* Opções do dropdown */
+    .stSelectbox div[role="option"] {
+        color: #FFFFFF !important;
+    }
+
+    /* Opção selecionada no dropdown */
+    .stSelectbox div[role="option"][aria-selected="true"] {
+        background-color: #0068E6 !important;
+        color: #FFFFFF !important;
+    }
+
+    /* Hover nas opções do dropdown */
+    .stSelectbox div[role="option"]:hover {
+        background-color: #45464A !important;
+    }
+
+    /* Calendário do date input */
+    .stDateInput div[role="dialog"] {
+        background-color: #3A3B3F !important;
+        color: #FFFFFF !important;
+        border: 1px solid #45464A !important;
+    }
+
+    /* Cabeçalho do calendário */
+    .stDateInput .DayPicker-Caption {
+        color: #FFFFFF !important;
+    }
+
+    /* Dias do calendário */
+    .stDateInput .DayPicker-Day {
+        color: #FFFFFF !important;
+    }
+
+    /* Dia selecionado no calendário */
+    .stDateInput .DayPicker-Day--selected {
+        background-color: #0068E6 !important;
+        color: #FFFFFF !important;
+    }
+
+    /* Hover nos dias do calendário */
+    .stDateInput .DayPicker-Day:hover {
+        background-color: #45464A !important;
+    }
+
+    /* Radio buttons e checkboxes */
+    .stRadio [role="radiogroup"], .stCheckbox [role="group"] {
+        background-color: #3A3B3F !important;
+        border-radius: 6px;
+        padding: 10px;
+    }
+
+    .stRadio label, .stCheckbox label {
+        color: #FFFFFF !important;
+    }
+
+    /* Slider */
+    .stSlider .st-ae {
+        color: #FFFFFF !important;
+    }
+
+    .stSlider .st-af {
+        background-color: #0068E6 !important;
+    }
+
+    /* Títulos e textos gerais */
+    h1, h2, h3, h4, h5, h6, p, div, span {
+        color: #FFFFFF !important;
+    }
+
+    /* Container do formulário */
+    .stForm {
+        background-color: #3A3B3F !important;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+</style>
     """, unsafe_allow_html=True)
 
 
