@@ -276,27 +276,46 @@ def set_theme():
         background-color: var(--button-bg) !important;
         color: var(--text-color) !important;
     }
-        /* ESTILO ESPECÍFICO PARA O CAMPO MODALIDADE DE PAGAMENTO */
-    div[data-testid="stForm"] div[role="radiogroup"] {
-        background-color: #3A3B3F !important;  /* Cinza escuro */
+            /* ESTILO COMPLETO PARA O CARD DE MODALIDADE DE PAGAMENTO */
+    div[data-testid="stForm"] div[data-baseweb="radio"] {
+        background-color: #3A3B3F !important;
         padding: 12px !important;
         border-radius: 8px !important;
-        margin-top: 8px !important;
+        margin: 8px 0 !important;
     }
     
-    /* CORREÇÃO PARA O TEXTO DOS RADIOBUTTONS */
-    div[data-testid="stForm"] div[role="radiogroup"] label {
+    /* TEXTO DOS LABELS */
+    div[data-testid="stForm"] div[data-baseweb="radio"] label {
         color: white !important;
+        font-weight: 500 !important;
     }
     
-    /* ESTILO DOS RADIOBUTTONS SELECIONADOS */
-    div[data-testid="stForm"] div[role="radiogroup"] .st-cc {
-        color: white !important;
+    /* BOTÕES DE RÁDIO */
+    div[data-testid="stForm"] div[data-baseweb="radio"] .st-bm {
+        background-color: #3A3B3F !important;
     }
     
-    /* BORDA DOS RADIOBUTTONS */
-    div[data-testid="stForm"] div[role="radiogroup"] .st-cd {
+    /* BORDA E MARCAÇÃO DOS RADIOBUTTONS */
+    div[data-testid="stForm"] div[data-baseweb="radio"] .st-bl {
         border-color: white !important;
+    }
+    
+    div[data-testid="stForm"] div[data-baseweb="radio"] .st-bk {
+        background-color: white !important;
+    }
+    
+    /* ESTADO HOVER */
+    div[data-testid="stForm"] div[data-baseweb="radio"] label:hover {
+        background-color: #45464A !important;
+    }
+    
+    /* FOCO E SELEÇÃO */
+    div[data-testid="stForm"] div[data-baseweb="radio"] input:checked + div {
+        border-color: var(--accent-color) !important;
+    }
+    
+    div[data-testid="stForm"] div[data-baseweb="radio"] input:checked + div > div {
+        background-color: var(--accent-color) !important;
     }
     </style>
     """, unsafe_allow_html=True)
