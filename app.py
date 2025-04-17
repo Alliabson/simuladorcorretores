@@ -59,15 +59,15 @@ def set_theme():
     <style>
         /* FUNDO PRINCIPAL */
         .stApp {
-            background-color: #2A2B2E;
+            background-color: #1E1E1E;
         }
         
         /* CARDS DE RESULTADO (MÉTRICAS) - AZUL VIBRANTE */
         .stMetric {
-            background-color: #3A3B3F;
+            background-color: #2A2A2A;
             border-radius: 10px;
             padding: 15px;
-            border-left: 5px solid #0068E6;
+            border-left: 5px solid #3C9EFF;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
@@ -89,7 +89,7 @@ def set_theme():
         
         /* BOTÃO CALCULAR - AZUL VIBRANTE */
         div.stButton > button:first-child {
-            background-color: #0068E6 !important;
+            background-color: #3C9EFF !important;
             color: white !important;
             border: none !important;
             border-radius: 6px;
@@ -97,7 +97,7 @@ def set_theme():
         }
         
         div.stButton > button:first-child:hover {
-            background-color: #0052B4 !important;
+            background-color: #61b4ff !important;
             transform: translateY(-1px);
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
@@ -119,7 +119,7 @@ def set_theme():
         
         /* BOTÕES DE EXPORTAÇÃO (AZUL VIBRANTE) */
         .stDownloadButton button {
-            background-color: #0068E6 !important;
+            background-color: #3C9EFF !important;
             color: white !important;
             border: none;
             border-radius: 6px;
@@ -128,20 +128,20 @@ def set_theme():
         }
         
         .stDownloadButton button:hover {
-            background-color: #0052B4 !important;
+            background-color: #61b4ff !important;
             transform: translateY(-1px);
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         
         /* TABELA - ESTILO ORIGINAL */
         .dataframe {
-            background-color: #3A3B3F !important;
+            background-color: #2A2A2A !important;
             color: #FFFFFF !important;
             border-radius: 8px;
         }
         
         .dataframe th {
-            background-color: #0068E6 !important;
+            background-color: #3C9EFF !important;
             color: white !important;
             font-weight: 600;
             padding: 12px !important;
@@ -149,15 +149,15 @@ def set_theme():
         
         .dataframe td {
             padding: 10px !important;
-            color: #FFFFFF !important;
+            color: #CFCFCF !important;
         }
         
         .dataframe tr:nth-child(even) {
-            background-color: #2E2F33 !important;
+            background-color: #1E1E1E !important;
         }
         
         .dataframe tr:hover {
-            background-color: #45464A !important;
+            background-color: #3A3A3A !important;
         }
         
         /* SOLUÇÃO PARA FLICKERING */
@@ -172,12 +172,12 @@ def set_theme():
         
         .stDataFrame-fullscreen {
             position: fixed !important;
-            top: 0 !important;
+            top: 0 !important;#1E1E1E
             left: 0 !important;
             right: 0 !important;
             bottom: 0 !important;
             z-index: 9999 !important;
-            background-color: #2A2B2E !important;
+            background-color: #1E1E1E !important;
             padding: 2rem !important;
             overflow: auto !important;
         }
@@ -214,6 +214,7 @@ def set_theme():
         }
     </style>
     """, unsafe_allow_html=True)
+
 
 
 # Função de formatação de moeda robusta
