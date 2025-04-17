@@ -97,15 +97,24 @@ def set_theme():
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         
-        /* BOTÃO REINICIAR (VERMELHO) */
-        .reset-button button {
+        /* BOTÃO CALCULAR - PRETO COM TEXTO BRANCO */
+        div.stButton > button:first-child {
             background-color: #202124 !important;
             color: white !important;
-            border: none;
+            border: none !important;
             border-radius: 6px;
             font-weight: 500;
         }
-        
+                
+        /* BOTÃO REINICIAR - PRETO COM TEXTO BRANCO */
+        .reset-button button {
+            background-color: #202124 !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
         .reset-button button:hover {
             background-color: #202124 !important;
             transform: translateY(-1px);
