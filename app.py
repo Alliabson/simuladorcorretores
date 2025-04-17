@@ -190,47 +190,37 @@ def set_theme():
         div[data-testid="stVerticalBlock"] > div > div > div > div > label {
             color: #FFFFFF !important;
         }
-/* Botões principais - Calcular e Reiniciar */
-        div[data-testid="stForm"] button {
+/* BOTÕES ESPECÍFICOS (Calcular/Reiniciar) */
+        /* Pegando os botões dentro do formulário principal */
+        div[data-testid="stForm"] button[kind="secondaryFormSubmit"],
+        div[data-testid="stForm"] button[kind="secondary"] {
             background-color: #4D6BFE !important;
             color: white !important;
             border: none !important;
             border-radius: 4px !important;
-            transition: all 0.3s ease !important;
         }
-        
-        div[data-testid="stForm"] button:hover {
-            background-color: #3A56D4 !important;
-            color: white !important;
-        }
-        
-        div[data-testid="stForm"] button:focus {
-            background-color: #4D6BFE !important;
-            color: white !important;
-        }
-        
-        /* Botões de exportação - PDF e Excel */
+
+        /* BOTÕES DE EXPORTAÇÃO (PDF/Excel) */
+        /* Pegando apenas os botões de download */
         .stDownloadButton button {
             background-color: #4D6BFE !important;
             color: white !important;
             border: none !important;
             border-radius: 4px !important;
-            transition: all 0.3s ease !important;
         }
-        
+
+        /* EFEITO HOVER PARA TODOS OS BOTÕES ALVO */
+        div[data-testid="stForm"] button[kind="secondaryFormSubmit"]:hover,
+        div[data-testid="stForm"] button[kind="secondary"]:hover,
         .stDownloadButton button:hover {
             background-color: #3A56D4 !important;
             color: white !important;
         }
-        
-        .stDownloadButton button:focus {
-            background-color: #4D6BFE !important;
-            color: white !important;
-        }
-        
-        /* Cor do texto dentro dos botões */
-        .stButton > button > div > p,
-        .stDownloadButton > button > div > p {
+
+        /* TEXTO DENTRO DOS BOTÕES */
+        div[data-testid="stForm"] button[kind="secondaryFormSubmit"] > div > p,
+        div[data-testid="stForm"] button[kind="secondary"] > div > p,
+        .stDownloadButton button > div > p {
             color: white !important;
             font-weight: 500 !important;
         }
