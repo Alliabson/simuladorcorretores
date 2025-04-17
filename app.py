@@ -276,6 +276,28 @@ def set_theme():
         background-color: var(--button-bg) !important;
         color: var(--text-color) !important;
     }
+        /* ESTILO ESPECÍFICO PARA O CAMPO MODALIDADE DE PAGAMENTO */
+    div[data-testid="stForm"] div[role="radiogroup"] {
+        background-color: #3A3B3F !important;  /* Cinza escuro */
+        padding: 12px !important;
+        border-radius: 8px !important;
+        margin-top: 8px !important;
+    }
+    
+    /* CORREÇÃO PARA O TEXTO DOS RADIOBUTTONS */
+    div[data-testid="stForm"] div[role="radiogroup"] label {
+        color: white !important;
+    }
+    
+    /* ESTILO DOS RADIOBUTTONS SELECIONADOS */
+    div[data-testid="stForm"] div[role="radiogroup"] .st-cc {
+        color: white !important;
+    }
+    
+    /* BORDA DOS RADIOBUTTONS */
+    div[data-testid="stForm"] div[role="radiogroup"] .st-cd {
+        border-color: white !important;
+    }
     </style>
     """, unsafe_allow_html=True)
 
