@@ -56,217 +56,205 @@ st.set_page_config(layout="wide")
 
 def set_theme():
     st.markdown("""
-<style>
+    <style>
+    /* ===== VARIÁVEIS DE CORES ===== */
     :root {
-        /* DEFINIÇÕES DE CORES PRINCIPAIS */
-        --primary: #2A2B2E;
-        --background: #2A2B2E;
-        --secondary-background: #3A3B3F;
-        --text: #FFFFFF;
-        --font: "Source Sans Pro", sans-serif;
+        --primary-bg: #2A2B2E;      /* Cor principal de fundo */
+        --secondary-bg: #3A3B3F;    /* Cor secundária */
+        --accent-color: #0068E6;    /* Azul para destaques */
+        --text-color: #FFFFFF;      /* Texto branco */
+        --button-bg: #202124;       /* Fundo dos botões principais */
+        --hover-effect: rgba(255, 255, 255, 0.05); /* Efeito hover */
     }
-    
-    /* RESET COMPLETO DO TEMA */
-    .stApp {
-        background: var(--background) !important;
-        color: var(--text) !important;
-        font-family: var(--font) !important;
-    }
-    
-    /* REMOVE EFEITOS INDESEJADOS */
-    .stApp > div:first-child {
+
+    /* ===== RESET COMPLETO DO TEMA ===== */
+    html, body, .stApp, .main, .block-container,
+    .stApp > div:first-child, [data-testid="stAppViewContainer"] {
+        background-color: var(--primary-bg) !important;
         background-image: none !important;
+        color: var(--text-color) !important;
     }
-    
-    /* BOTÕES - SOLUÇÃO DEFINITIVA */
-    button[kind="primary"], .stButton>button {
-        background: var(--primary) !important;
+
+    /* ===== BOTÕES PRINCIPAIS ===== */
+    /* Botão Calcular */
+    div.stButton > button:first-child,
+    /* Botão Reiniciar */
+    .reset-button button,
+    /* Todos os botões padrão (exceto download) */
+    button:not(.stDownloadButton button):not(.st-emotion-cache-1xw8zd0) {
+        background-color: var(--button-bg) !important;
+        color: var(--text-color) !important;
+        border: none !important;
+        border-radius: 6px !important;
+        font-weight: 500 !important;
+        padding: 0.5rem 1rem !important;
+        transition: all 0.3s ease !important;
+    }
+
+    /* Efeito hover para botões */
+    div.stButton > button:first-child:hover,
+    .reset-button button:hover {
+        background-color: var(--button-bg) !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    /* ===== BOTÕES DE DOWNLOAD ===== */
+    .stDownloadButton button {
+        background-color: var(--accent-color) !important;
         color: white !important;
         border: none !important;
+        border-radius: 6px !important;
     }
 
-        /* CARDS DE RESULTADO (MÉTRICAS) - AZUL VIBRANTE */
-        .stMetric {
-            background-color: #3A3B3F;
-            border-radius: 10px;
-            padding: 15px;
-            border-left: 5px solid #0068E6;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .stMetric label {
-            color: #FFFFFF !important;
-            font-size: 14px !important;
-        }
-        
-        .stMetric div {
-            color: #FFFFFF !important;
-            font-size: 24px !important;
-            font-weight: 600;
-        }
-        
-        /* BOTÃO CALCULAR - AZUL VIBRANTE */
-        div.stButton > button:first-child {
-            background-color: #202124 !important;
-            color: white !important;
-            border: none !important;
-            border-radius: 6px;
-            font-weight: 500;
-        }
-        
-        div.stButton > button:first-child:hover {
-            background-color: #202124 !important;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-        
-        /* BOTÃO CALCULAR - PRETO COM TEXTO BRANCO */
-        div.stButton > button:first-child {
-            background-color: #202124 !important;
-            color: white !important;
-            border: none !important;
-            border-radius: 6px;
-            font-weight: 500;
-        }
-                
-        /* BOTÃO REINICIAR - PRETO COM TEXTO BRANCO */
-        .reset-button button {
-            background-color: #202124 !important;
-            color: white !important;
-            border: none !important;
-            border-radius: 6px;
-            font-weight: 500;
-        }
+    .stDownloadButton button:hover {
+        background-color: #0052B4 !important;
+        transform: translateY(-1px) !important;
+    }
 
-        .reset-button button:hover {
-            background-color: #202124 !important;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-        
-        /* BOTÕES DE EXPORTAÇÃO (AZUL VIBRANTE) */
-        .stDownloadButton button {
-            background-color: #0068E6 !important;
-            color: white !important;
-            border: none;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .stDownloadButton button:hover {
-            background-color: #0052B4 !important;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-        
-        /* TABELA - ESTILO ORIGINAL */
-        .dataframe {
-            background-color: #3A3B3F !important;
-            color: #FFFFFF !important;
-            border-radius: 8px;
-        }
-        
-        .dataframe th {
-            background-color: #0068E6 !important;
-            color: white !important;
-            font-weight: 600;
-            padding: 12px !important;
-        }
-        
-        .dataframe td {
-            padding: 10px !important;
-            color: #FFFFFF !important;
-        }
-        
-        .dataframe tr:nth-child(even) {
-            background-color: #2E2F33 !important;
-        }
-        
-        .dataframe tr:hover {
-            background-color: #45464A !important;
-        }
-        
-        /* SOLUÇÃO PARA FLICKERING */
-        [data-testid="stDataFrame-container"] {
-            will-change: transform;
-            contain: strict;
-            min-height: 400px;
-            transform: translate3d(0, 0, 0);
-            backface-visibility: hidden;
-            perspective: 1000px;
-        }
-        
-        .stDataFrame-fullscreen {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            bottom: 0 !important;
-            z-index: 9999 !important;
-            background-color: #2A2B2E !important;
-            padding: 2rem !important;
-            overflow: auto !important;
-        }
-        
-        /* ESTILOS PARA ALINHAMENTO DOS BOTÕES */
-        div[data-testid="column"] {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-        }
-        
-        /* Espaçamento entre os botões */
-        .stButton:first-of-type {
-            margin-right: 8cm;
-        }
-        
-        /* Garante que os botões tenham a mesma altura */
-        .stButton > button {
-            height: 38px;
-            padding: 0 20px;
-            margin: 0;
-        }
-        
-        /* Estilo específico para o botão de reset */
-        .reset-button {
-            display: flex;
-            align-items: center;
-            height: 100%;
-        }
-        
-        /* Remove espaçamento extra das colunas */
-        [data-testid="column"] {
-            padding: 0 !important;
-        }
-/* CORES DO FORMULÁRIO */
-/* Textos dos labels */
-.stTextInput label, .stNumberInput label, .stSelectbox label, .stDateInput label,
-.stTextArea label, .stRadio label, .stCheckbox label, .stSlider label {
-    color: #FFFFFF !important;
-}
-/* Textos dentro dos inputs */
-.stTextInput input, .stNumberInput input, .stSelectbox select, .stDateInput input,
-.stTextArea textarea, .stRadio input, .stCheckbox input {
-    color: #FFFFFF !important;
-    background-color: #3A3B3F !important;
-}
+    /* ===== TEXTOS E TÍTULOS ===== */
+    h1, h2, h3, h4, h5, h6,
+    p, span, div, label, pre, code,
+    .stMarkdown, .stAlert, .stException,
+    .stTooltip, .stProgress > div > div {
+        color: var(--text-color) !important;
+    }
 
-/* Placeholder dos inputs */
-.stTextInput input::placeholder, .stNumberInput input::placeholder,
-.stSelectbox select::placeholder, .stDateInput input::placeholder,
-.stTextArea textarea::placeholder {
-    color: #CCCCCC !important;
-    opacity: 1;
-}
+    /* ===== FORMULÁRIOS E INPUTS ===== */
+    .stTextInput, .stNumberInput, .stSelectbox,
+    .stDateInput, .stTextArea, .stRadio, .stCheckbox,
+    .stSlider, .stFileUploader, .stMultiSelect {
+        color: var(--text-color) !important;
+    }
 
-/* Títulos e textos gerais */
-    h1, h2, h3, p {
-        color: #FFFFFF !important;
+    .stTextInput input, .stNumberInput input,
+    .stSelectbox select, .stDateInput input,
+    .stTextArea textarea, .stRadio input,
+    .stCheckbox input, .stSlider input {
+        color: var(--text-color) !important;
+        background-color: var(--secondary-bg) !important;
+        border: 1px solid #555 !important;
+    }
+
+    /* Placeholders */
+    ::placeholder {
+        color: #CCCCCC !important;
+        opacity: 1 !important;
+    }
+
+    /* ===== COMPONENTES ESPECÍFICOS ===== */
+    /* Cards de Métricas */
+    .stMetric {
+        background-color: var(--secondary-bg) !important;
+        border-radius: 10px !important;
+        padding: 15px !important;
+        border-left: 5px solid var(--accent-color) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .stMetric label {
+        color: var(--text-color) !important;
+        font-size: 14px !important;
+    }
+
+    .stMetric div {
+        color: var(--text-color) !important;
+        font-size: 24px !important;
+        font-weight: 600 !important;
+    }
+
+    /* Tabelas */
+    .dataframe {
+        background-color: var(--secondary-bg) !important;
+        color: var(--text-color) !important;
+        border-radius: 8px !important;
+    }
+
+    .dataframe th {
+        background-color: var(--accent-color) !important;
+        color: white !important;
+        font-weight: 600 !important;
+        padding: 12px !important;
+    }
+
+    .dataframe td {
+        padding: 10px !important;
+        color: var(--text-color) !important;
+    }
+
+    .dataframe tr:nth-child(even) {
+        background-color: #2E2F33 !important;
+    }
+
+    .dataframe tr:hover {
+        background-color: #45464A !important;
+    }
+
+    /* ===== LAYOUT E AJUSTES ===== */
+    /* Container da Tabela */
+    [data-testid="stDataFrame-container"] {
+        will-change: transform;
+        contain: strict;
+        min-height: 400px;
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+        background-color: var(--secondary-bg) !important;
+    }
+
+    /* Modo Tela Cheia */
+    .stDataFrame-fullscreen {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        z-index: 9999 !important;
+        background-color: var(--primary-bg) !important;
+        padding: 2rem !important;
+        overflow: auto !important;
+    }
+
+    /* Alinhamento de Botões */
+    div[data-testid="column"] {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 0 !important;
+    }
+
+    .stButton:first-of-type {
+        margin-right: 8cm !important;
+    }
+
+    .stButton > button {
+        height: 38px !important;
+        padding: 0 20px !important;
+        margin: 0 !important;
+    }
+
+    /* Sidebar */
+    [data-testid="stSidebar"] {
+        background-color: var(--primary-bg) !important;
+        border-right: 1px solid #444 !important;
+    }
+
+    /* ===== GARANTIAS FINAIS ===== */
+    /* Remove sombras/gradientes residuais */
+    .stApp > div:first-child,
+    .stApp > div:first-child > div:first-child,
+    .main .block-container {
+        box-shadow: none !important;
+        background-image: none !important;
+    }
+
+    /* Força cores em elementos dinâmicos */
+    [class*="st-"]:not(.stDownloadButton) button {
+        background-color: var(--button-bg) !important;
+        color: var(--text-color) !important;
     }
     </style>
     """, unsafe_allow_html=True)
-
 
 
 # Função de formatação de moeda robusta
