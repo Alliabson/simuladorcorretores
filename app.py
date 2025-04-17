@@ -278,34 +278,7 @@ def set_theme():
     }
     </style>
     """, unsafe_allow_html=True)
-from streamlit.components.v1 import html
-html("""
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    function styleFormButtons() {
-        // Botões em forms
-        document.querySelectorAll('[data-testid="stForm"] button').forEach(btn => {
-            if(!btn.classList.contains('stDownloadButton')) {
-                btn.style.backgroundColor = '#202124';
-                btn.style.color = 'white';
-                btn.style.border = 'none';
-                btn.style.borderRadius = '6px';
-            }
-        });
-        
-        // Outros botões
-        document.querySelectorAll('button:not([data-testid="baseButton-secondary"]):not(.stDownloadButton)').forEach(btn => {
-            btn.style.backgroundColor = '#202124';
-            btn.style.color = 'white';
-        });
-    }
-    
-    // Executa imediatamente e a cada 500ms para pegar elementos dinâmicos
-    styleFormButtons();
-    setInterval(styleFormButtons, 500);
-});
-</script>
-""")
+
 
 # Função de formatação de moeda robusta
 def formatar_moeda(valor, simbolo=True):
