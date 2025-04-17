@@ -216,6 +216,36 @@ def set_theme():
     h1, h2, h3, h4, h5, h6, p, div, span {
         color: #FFFFFF !important;
     }
+/* COR DOS TEXTOS NOS INPUTS */
+        .stTextInput input, 
+        .stNumberInput input,
+        .stSelectbox select,
+        .stTextArea textarea,
+        .stDateInput input,
+        .stTimeInput input,
+        .stSlider input {
+            color: #202124 !important;
+        }
+        
+        /* COR DOS RÓTULOS DOS INPUTS (LABELS) */
+        .stTextInput label,
+        .stNumberInput label,
+        .stSelectbox label,
+        .stTextArea label,
+        .stDateInput label,
+        .stTimeInput label,
+        .stSlider label {
+            color: #FFFFFF !important;
+        }
+        
+        /* CARDS DE RESULTADO (MÉTRICAS) - AZUL VIBRANTE */
+        .stMetric {
+            background-color: #3A3B3F;
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 5px solid #0068E6;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
     </style>
     """, unsafe_allow_html=True)
 
