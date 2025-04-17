@@ -57,11 +57,7 @@ st.set_page_config(layout="wide")
 def set_theme():
     st.markdown("""
 <style>
-    /* FUNDO PRINCIPAL */
-    .stApp {
-        background-color: #1E1E1E;
-        color: #202124;
-    }
+    
     
     /* CARDS DE RESULTADO (MÉTRICAS) */
     .stMetric {
@@ -76,13 +72,6 @@ def set_theme():
         color: #202124 !important;
         font-size: 14px !important;
     }
-        /* CONFIGURAÇÕES DO STREAMLIT (canto superior direito) */
-    .st-emotion-cache-1wbqy5l {
-        background-color: #292A2D !important;
-    }
-    .st-emotion-cache-1wbqy5l e1f1d6gn0 {
-        color: white !important;
-    }
     .stMetric div {
         color: #202124 !important;
         font-size: 24px !important;
@@ -94,35 +83,7 @@ def set_theme():
         color: #FFFFFF;
     }
     
-    /* BOTÃO CALCULAR */
-    .st-emotionton > button:first-child {
-        background-color: #292A2D !important;  /* Fundo preto */
-        color: white !important;              /* Texto branco */
-        border: 1px solid #3A3A3A !important;
-        border-radius: 6px;
-        font-weight: 500;
-    }
-    
-    div.stButton > button:first-child:hover {
-        background-color: #61b4ff !important;
-        transform: translateY(-1px);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-    
-    /* BOTÃO REINICIAR */
-    .reset-button button {
-        background-color: #292A2D !important;  /* Fundo preto */
-        color: white !important;              /* Texto branco */
-        border: 1px solid #3A3A3A !important;
-        border-radius: 6px;
-        font-weight: 500;
-    }
-    
-    .reset-button button:hover {
-        background-color: #CC0000 !important;
-        transform: translateY(-1px);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
+  
     
     /* BOTÕES DE EXPORTAÇÃO */
     .stDownloadButton button {
