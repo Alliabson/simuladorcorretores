@@ -82,6 +82,11 @@ def set_theme():
             font-weight: 600;
         }
         
+        /* Títulos */
+        h1, h2, h3, h4, h5, h6, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
+            color: #FFFFFF;
+        }
+        
         /* BOTÃO CALCULAR - AZUL VIBRANTE */
         div.stButton > button:first-child {
             background-color: #0068E6 !important;
