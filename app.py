@@ -60,7 +60,7 @@ def set_theme():
     /* FUNDO PRINCIPAL */
     .stApp {
         background-color: #1E1E1E;
-        color: #FFFFFF;
+        color: #202124;
     }
     
     /* CARDS DE RESULTADO (MÉTRICAS) */
@@ -73,12 +73,12 @@ def set_theme():
     }
     
     .stMetric label {
-        color: #FFFFFF !important;
+        color: #202124 !important;
         font-size: 14px !important;
     }
     
     .stMetric div {
-        color: #FFFFFF !important;
+        color: #202124 !important;
         font-size: 24px !important;
         font-weight: 600;
     }
