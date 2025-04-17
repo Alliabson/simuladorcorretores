@@ -210,11 +210,11 @@ def set_theme():
     /* ===== CORREÇÃO GLOBAL PARA TEXTOS ===== */
     /* Todos os textos dentro do form */
     div[data-testid="stForm"] * {
-        color: #FFFFFF !important;
+        color: #2A2B2E !important;
     }
     /* Títulos e textos gerais */
     h1, h2, h3, p {
-        color: ##2A2B2E !important;
+        color: #FFFFFF !important;
     }
     </style>
     """, unsafe_allow_html=True)
