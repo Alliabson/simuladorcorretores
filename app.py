@@ -324,6 +324,16 @@ def set_theme():
         padding: 15px;
         margin-bottom: 20px;
     }
+/* Botões padrão do formulário */
+.stButton button {
+    background-color: #292A2D !important;
+    color: white !important;
+    border: 1px solid #3A3A3A !important;
+}
+
+.stButton button:hover {
+    background-color: #3A3A3A !important;
+}
 </style>
     """, unsafe_allow_html=True)
 
