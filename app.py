@@ -59,7 +59,7 @@ def set_theme():
  <style>
     /* FUNDO PRINCIPAL */
     .stApp {
-        background-color: #1E1E1E;
+        background-color: #292A2D;
         color: #292A2D;
     }
     
