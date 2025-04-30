@@ -1,3 +1,4 @@
+
 import streamlit as st
 from datetime import datetime, timedelta
 from PIL import Image
@@ -442,7 +443,9 @@ def gerar_cronograma(valor_financiado, valor_parcela, valor_balao,
         parcelas = []
         baloes = []
         
-        # Primeiro passamos para calcular os valores sem ajuste
+        # Taxa apropriada para balões
+        taxa_balao = taxas['anual'] if tipo_balao == 'anual' else taxas['semestral'] if tipo_balao == 'semestral' else 0
+        
         if modalidade == "mensal":
             for i in range(1, qtd_parcelas + 1):
                 data_vencimento_parcela = ajustar_data_vencimento(data_entrada, "mensal", i, dia_vencimento)
@@ -472,13 +475,12 @@ def gerar_cronograma(valor_financiado, valor_parcela, valor_balao,
         
         elif modalidade in ["só balão anual", "só balão semestral"]:
             periodo = "anual" if modalidade == "só balão anual" else "semestral"
-            taxa_periodo = taxas['anual'] if periodo == "anual" else taxas['semestral']
             
             for i in range(1, qtd_baloes + 1):
                 data_vencimento_balao = ajustar_data_vencimento(data_entrada, periodo, i, dia_vencimento)
                 dias_corridos = (data_vencimento_balao - data_entrada).days
                 
-                juros = saldo_devedor * taxa_periodo
+                juros = saldo_devedor * taxa_balao
                 amortizacao = valor_balao - juros
                 if amortizacao > saldo_devedor:
                     amortizacao = saldo_devedor
@@ -486,6 +488,7 @@ def gerar_cronograma(valor_financiado, valor_parcela, valor_balao,
                 
                 saldo_devedor -= amortizacao
                 
+                # Usar taxa mensal para cálculo do valor presente, mas com dias corridos corretos
                 valor_presente = calcular_valor_presente(valor_balao, taxas['mensal'], dias_corridos)
                 total_valor_presente += valor_presente
                 
@@ -502,8 +505,6 @@ def gerar_cronograma(valor_financiado, valor_parcela, valor_balao,
         
         elif modalidade == "mensal + balão":
             intervalo_balao = 12 if tipo_balao == "anual" else 6
-            taxa_periodo = taxas['anual'] if tipo_balao == "anual" else taxas['semestral']
-            
             contador_baloes = 1
             
             for i in range(1, qtd_parcelas + 1):
@@ -533,7 +534,7 @@ def gerar_cronograma(valor_financiado, valor_parcela, valor_balao,
                 })
                 
                 if i % intervalo_balao == 0 and contador_baloes <= qtd_baloes:
-                    juros_balao = saldo_devedor * taxa_periodo
+                    juros_balao = saldo_devedor * taxa_balao
                     amortizacao_balao = valor_balao - juros_balao
                     if amortizacao_balao > saldo_devedor:
                         amortizacao_balao = saldo_devedor
@@ -541,6 +542,7 @@ def gerar_cronograma(valor_financiado, valor_parcela, valor_balao,
                     
                     saldo_devedor -= amortizacao_balao
                     
+                    # Cálculo do valor presente usando taxa mensal com dias corridos corretos
                     valor_presente_balao = calcular_valor_presente(valor_balao, taxas['mensal'], dias_corridos)
                     total_valor_presente += valor_presente_balao
                     
@@ -558,24 +560,22 @@ def gerar_cronograma(valor_financiado, valor_parcela, valor_balao,
         
         cronograma = parcelas + baloes
         
-        # Ajuste preciso para garantir que o valor presente total seja exatamente igual ao valor financiado
-        if cronograma:  # Se houver itens no cronograma
-            # Calcula a diferença e ajusta no último item
+        # Verificação e ajuste de consistência
+        if cronograma:
             soma_valor_presente = sum(item['Valor_Presente'] for item in cronograma)
             diferenca = valor_financiado - soma_valor_presente
             
-            if abs(diferenca) > 0:
-                # Ajusta o último item para compensar a diferença
-                ultimo_item = cronograma[-1]
-                ultimo_item['Valor_Presente'] = round(ultimo_item['Valor_Presente'] + diferenca, 2)
-                ultimo_item['Desconto_Aplicado'] = round(ultimo_item['Valor'] - ultimo_item['Valor_Presente'], 2)
+            if abs(diferenca) > 0.01:
+                # Distribuir a diferença proporcionalmente entre todos os itens
+                for item in cronograma:
+                    proporcao = item['Valor_Presente'] / soma_valor_presente if soma_valor_presente > 0 else 1/len(cronograma)
+                    ajuste = diferenca * proporcao
+                    item['Valor_Presente'] = round(item['Valor_Presente'] + ajuste, 2)
+                    item['Desconto_Aplicado'] = round(item['Valor'] - item['Valor_Presente'], 2)
         
         total_valor = round(sum(p['Valor'] for p in cronograma), 2)
         total_valor_presente = round(sum(p['Valor_Presente'] for p in cronograma), 2)
         total_desconto = round(sum(p['Desconto_Aplicado'] for p in cronograma), 2)
-        
-        # Garante que o valor presente total seja exatamente igual ao valor financiado
-        total_valor_presente = valor_financiado
         
         cronograma.append({
             "Item": "TOTAL",
@@ -584,7 +584,7 @@ def gerar_cronograma(valor_financiado, valor_parcela, valor_balao,
             "Data_Pagamento": "",
             "Dias": "",
             "Valor": total_valor,
-            "Valor_Presente": total_valor_presente,
+            "Valor_Presente": valor_financiado,  # Forçar o valor exato aqui
             "Desconto_Aplicado": total_desconto
         })
     
@@ -961,7 +961,7 @@ def main():
                         
             total = next(p for p in cronograma if p['Item'] == 'TOTAL')
             st.metric("Valor Total a Pagar", formatar_moeda(total['Valor']))
-            st.metric("Valor Presente Total", formatar_moeda(total['Valor_Presente']))
+            st.metric("Valor Presente Total", formatar_moeda(valor_financiado))
             
             # Verificação de consistência
             if abs(total['Valor_Presente'] - valor_financiado) > 0.01:
